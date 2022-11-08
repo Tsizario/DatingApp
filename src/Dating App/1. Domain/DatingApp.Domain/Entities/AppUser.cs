@@ -10,6 +10,10 @@ namespace DatingApp.Domain.Entities
 
         public string FirstName { get; set; }
 
+        public byte[] PasswordHash { get; set; }
+
+        public byte[] PasswordSalt { get; set; }
+
         public GenderType Gender { get; set; }
 
         public string Bio { get; set; }
