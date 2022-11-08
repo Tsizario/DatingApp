@@ -6,19 +6,17 @@ namespace DatingApp.Domain.Entities
     {
         public int Id { get; set; }
 
-        public RoleType Role { get; set; }
+        public string UserName { get; set; }
 
         public string FirstName { get; set; }
 
-        public string LastName { get; set; }
-
         public GenderType Gender { get; set; }
-
-        public string UserName { get; set; }
 
         public string Bio { get; set; }
 
         public string LookingFor { get; set; }
+
+        public string Interests { get; set; }
 
         public string Country { get; set; }
 
@@ -30,8 +28,6 @@ namespace DatingApp.Domain.Entities
 
         public DateTime DateOfBirth { get; set; }
 
-        public List<Interest> Interests { get; set; }
-
         public ICollection<Photo> Photos { get; set; }
 
         public ICollection<UserLike> LikesFromUsers { get; set; }
@@ -40,6 +36,6 @@ namespace DatingApp.Domain.Entities
 
         public ICollection<Message> SendMessages { get; set; }
 
-        public ICollection<Message> ReceivedMessages { get; set; }
+        public ICollection<Message> ReceivedMessages { get; set; }        
     }
 }

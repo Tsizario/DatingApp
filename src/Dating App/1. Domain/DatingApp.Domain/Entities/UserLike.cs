@@ -3,12 +3,12 @@
     public class UserLike
     {
 
-        public int AuthorId { get; set; }
+        public int SourceUserId { get; set; }
 
         public int LikedUserId { get; set; }
 
         public AppUser LikedUser { get; set; }
 
-        public AppUser Author { get; set; }
+        public AppUser SourceUser { get; set; }
     }
 }
