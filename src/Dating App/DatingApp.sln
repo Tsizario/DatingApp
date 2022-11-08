@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatingApp.BLL", "3. BLL\Dat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. UI", "4. UI", "{7647E19C-F3E4-458B-A306-D42FDED0AA86}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatingApp.UI", "4. UI\DatingApp.UI\DatingApp.UI.csproj", "{5DDB554B-9FE1-44E8-9CED-DA1C7307BF5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatingApp.WebApi", "4. UI\DatingApp.UI\DatingApp.WebApi.csproj", "{5DDB554B-9FE1-44E8-9CED-DA1C7307BF5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
