@@ -20,7 +20,7 @@ namespace DatingApp.DAL.Repositories.UserRepository
         public async Task<AppUser> GetUserByUsernameAsync(string username)
         {
             return await _dbContext.Users
-                .SingleOrDefaultAsync(user => user.UserName == username);
+                .SingleOrDefaultAsync(user => user.Username == username);
         }
 
         public async Task<IEnumerable<AppUser>> GetAllUsersAsync()
@@ -39,7 +39,8 @@ namespace DatingApp.DAL.Repositories.UserRepository
 
         public async Task<bool> ExistsAsync(string username)
         {
-            return await _dbcontext.Users.AnyAsync(x => x.Username == username.ToLower());
+            return await _dbContext.Users
+                .AnyAsync(user => user.Username == username.ToLower());
         }       
     }
 }
