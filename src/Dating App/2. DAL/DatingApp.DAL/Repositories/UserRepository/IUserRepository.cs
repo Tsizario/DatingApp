@@ -10,7 +10,7 @@ namespace DatingApp.DAL.Repositories.UserRepository
 
         Task<IEnumerable<AppUser>> GetAllUsersAsync();
 
-        Task<AppUser> AddUserAsync(AppUser addedEntity);
+        Task<AppUser> AddUserAsync(AppUser appUser);
 
         Task<bool> ExistsAsync(string username);
     }
