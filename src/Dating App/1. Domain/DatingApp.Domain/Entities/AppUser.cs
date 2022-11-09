@@ -33,13 +33,5 @@ namespace DatingApp.Domain.Entities
         public DateTime DateOfBirth { get; set; }
 
         public ICollection<Photo> Photos { get; set; }
-
-        public ICollection<UserLike> LikesFromUsers { get; set; }
-
-        public ICollection<UserLike> LikesToUsers { get; set; }
-
-        public ICollection<Message> SendMessages { get; set; }
-
-        public ICollection<Message> ReceivedMessages { get; set; }        
     }
 }
