@@ -15,7 +15,8 @@ namespace API
         {
             services.AddDataAccessLayerServices(_configuration);
 
-            services.AddCors();       
+            services.AddCors();
+            services.AddMvc();
         }
 
         public void Configure(WebApplication app)
