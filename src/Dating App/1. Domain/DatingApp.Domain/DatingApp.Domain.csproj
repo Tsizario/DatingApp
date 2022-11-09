@@ -14,4 +14,8 @@
     <NoWarn>1701;1702;8603</NoWarn>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Constants\" />
+  </ItemGroup>
+
 </Project>

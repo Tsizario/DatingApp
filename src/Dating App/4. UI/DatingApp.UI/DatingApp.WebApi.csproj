@@ -14,4 +14,8 @@
     <ProjectReference Include="..\..\3. BLL\DatingApp.BLL\DatingApp.BLL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
