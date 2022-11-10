@@ -7,7 +7,7 @@ namespace Bll.Extensions
 {
     public static class ServiceRegistrationExtensions
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services,
+        public static IServiceCollection AddBusinessLogicLayerServices(this IServiceCollection services,
             IConfiguration configuration)
         {
             services.AddScoped<IUserService, UserService>();
