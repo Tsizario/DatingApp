@@ -8,5 +8,7 @@ namespace DatingApp.BLL.Services.UserService
         Task<ServiceResult<AppUserDto>> GetAppUserByUsername(string username);
 
         Task<ServiceResult<IEnumerable<AppUserDto>>> GetAllAppUsers();
+
+        Task<ServiceResult<bool>> IsAppUserExists(string username);
     }
 }

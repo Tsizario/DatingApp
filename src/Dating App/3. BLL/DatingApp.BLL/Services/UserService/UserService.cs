@@ -38,5 +38,14 @@ namespace DatingApp.BLL.Services.UserService
                 ? ServiceResult<AppUserDto>.CreateSuccess(appUserDto)
                 : ServiceResult<AppUserDto>.CreateFailure(Errors.AppUserNotFound);
         }
+
+        public async Task<ServiceResult<bool>> IsAppUserExists(string username)
+        {
+            var appUserExists = await _userRepository.ExistsAsync(username);
+
+            return appUserExists == true
+                ? ServiceResult<bool>.CreateSuccess(appUserExists)
+                : ServiceResult<bool>.CreateFailure(Errors.AppUserExists);
+        }
     }
 }
