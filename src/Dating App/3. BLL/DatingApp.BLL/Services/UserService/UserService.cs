@@ -45,7 +45,7 @@ namespace DatingApp.BLL.Services.UserService
 
             return appUserExists == true
                 ? ServiceResult<bool>.CreateSuccess(appUserExists)
-                : ServiceResult<bool>.CreateFailure(Errors.AppUserExists);
+                : ServiceResult<bool>.CreateFailure(Errors.AppUserNotFound);
         }
     }
 }
