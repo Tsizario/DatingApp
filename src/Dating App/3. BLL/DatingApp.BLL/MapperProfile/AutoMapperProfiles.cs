@@ -9,6 +9,7 @@ namespace DatingApp.BLL.MapperProfile
         public AutoMapperProfiles()
         {
             CreateMap<AppUser, AppUserDto>();
+            CreateMap<AppUser, AppUserRegisterDto>().ReverseMap();
         }
     }
 }
