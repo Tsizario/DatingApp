@@ -2,13 +2,10 @@
 using DatingApp.BLL.Services.TokenService;
 using DatingApp.BLL.Services.UserService;
 using DatingApp.Domain.Constants;
-using DatingApp.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.WebApi.Controllers
 {
-    [ApiController]
-    [Route("[controller]/")]
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
@@ -20,30 +17,36 @@ namespace DatingApp.WebApi.Controllers
             _tokenService = tokenService;
         }
 
-        [HttpPost("register")]
-        public async Task<ActionResult<AppUserTokenDto>> Register(AppUserRegisterDto registerDto)
+        //[HttpPost("register")]
+        //public async Task<ActionResult<AppUserTokenDto>> Register(AppUserRegisterDto registerDto)
+        //{
+        //    var appUserExists = await _userService.IsAppUserExists(registerDto.Username);
+
+        //    if (appUserExists.Success)
+        //        return BadRequest(Errors.AppUserExists);
+
+        //    var result = await _userService.AddAppUser(registerDto);
+
+        //    if (!result.Success)
+        //        return BadRequest(result.Error);
+
+        //    var appUserTokenDto = new AppUserTokenDto
+        //    {
+        //        Username = registerDto.Username,
+        //        Token = _tokenService.CreateToken(result.Value)
+        //    };
+
+        //    return CreatedAtAction(nameof(Register), appUserTokenDto);
+        //}
+
+        [HttpGet]
+        public IActionResult Login()
         {
-            var appUserExists = await _userService.IsAppUserExists(registerDto.Username);
-
-            if (appUserExists.Success)
-                return BadRequest(Errors.AppUserExists);
-
-            var result = await _userService.AddAppUser(registerDto);
-
-            if (!result.Success)
-                return BadRequest(result.Error);
-
-            var appUserTokenDto = new AppUserTokenDto
-            {
-                Username = registerDto.Username,
-                Token = _tokenService.CreateToken(result.Value)
-            };
-
-            return CreatedAtAction(nameof(Register), appUserTokenDto);
+            return View();
         }
 
-        [HttpPost("login")]
-        public async Task<ActionResult<AppUserTokenDto>> Login(AppUserLoginDto loginDto)
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] AppUserLoginDto loginDto)
         {
             var appUser = await _userService.GetAppUserByUsername(loginDto.Username);
 
@@ -61,7 +64,7 @@ namespace DatingApp.WebApi.Controllers
                 Token = _tokenService.CreateToken(result.Value)
             };
 
-            return Ok(appUserTokenDto);
+            return View(loginDto);
         }
     }
 }
