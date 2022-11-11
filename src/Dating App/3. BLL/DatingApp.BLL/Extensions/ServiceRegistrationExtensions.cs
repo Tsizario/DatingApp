@@ -1,4 +1,5 @@
 ﻿using DatingApp.BLL.MapperProfile;
+using DatingApp.BLL.Services.TokenService;
 using DatingApp.BLL.Services.UserService;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ namespace Bll.Extensions
             IConfiguration configuration)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITokenService, TokenService>();
 
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
