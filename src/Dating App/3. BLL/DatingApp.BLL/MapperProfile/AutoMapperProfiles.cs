@@ -8,9 +8,7 @@ namespace DatingApp.BLL.MapperProfile
     {
         public AutoMapperProfiles()
         {
-            CreateMap<AppUser, AppUserDto>()
-                .ForMember(destination => destination.PhotoUrl, optional => optional.MapFrom(source =>
-                    source.Photos.FirstOrDefault(photo => photo.IsMain).Url));
+            CreateMap<AppUser, AppUserDto>();
         }
     }
 }
