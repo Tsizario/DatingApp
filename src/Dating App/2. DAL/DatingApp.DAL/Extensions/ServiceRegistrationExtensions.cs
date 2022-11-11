@@ -8,7 +8,7 @@ namespace DatingApp.DAL.Extensions
 {
     public static class ServiceRegistrationExtensions
     {
-        public static IServiceCollection AddDataAccessLayerServices(this IServiceCollection services,
+        public static IServiceCollection AddDalServices(this IServiceCollection services,
             IConfiguration configuration)
         {
             services.AddDbContext<AppContext>(config =>
