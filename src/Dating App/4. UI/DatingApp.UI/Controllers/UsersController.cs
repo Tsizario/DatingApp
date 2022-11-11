@@ -1,10 +1,12 @@
 ﻿using DatingApp.BLL.DTO;
 using DatingApp.BLL.Services.UserService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.WebApi.Controllers
 {
     [Route("[controller]/")]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
