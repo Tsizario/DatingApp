@@ -1,3 +1,4 @@
+using Bll.Extensions;
 using DatingApp.DAL.Extensions;
 
 namespace API
@@ -14,8 +15,10 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDataAccessLayerServices(_configuration);
+            services.AddBusinessLogicLayerServices(_configuration);
 
-            services.AddCors();       
+            services.AddCors();
+            services.AddMvc();
         }
 
         public void Configure(WebApplication app)

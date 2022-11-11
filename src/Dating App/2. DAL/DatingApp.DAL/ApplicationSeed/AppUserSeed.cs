@@ -24,7 +24,7 @@ namespace DatingApp.DAL.ApplicationSeed
 
             var filePath = new DirectoryInfo(
                     Path.Combine(Environment.CurrentDirectory,
-                        @"..\..\2. DAL\DAL\ApplicationSeed"))
+                        @"..\..\2. DAL\DatingApp.DAL\ApplicationSeed"))
                             .GetFiles("*.json")
                                 .FirstOrDefault()?.FullName;
 
