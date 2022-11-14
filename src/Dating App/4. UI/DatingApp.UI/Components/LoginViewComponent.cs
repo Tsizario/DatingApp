@@ -2,10 +2,9 @@
 
 namespace DatingApp.WebApi.Components
 {
-    [ViewComponent]
-    public class NavbarViewComponent : ViewComponent
+    public class LoginViewComponent : ViewComponent
     {
-        public NavbarViewComponent()
+        public LoginViewComponent()
         {
         }
 

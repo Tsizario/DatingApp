@@ -1,9 +1,7 @@
 using Bll.Extensions;
 using DatingApp.BLL.Extensions;
 using DatingApp.DAL.Extensions;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using System.Diagnostics;
 
 namespace API
 {
@@ -23,28 +21,39 @@ namespace API
             services.AddBllIdentityServices(_configuration);
 
             services.AddCors();
-            services.AddMvc();
+            services.AddMvc()
+                .AddRazorOptions(options =>
+                {
+                    options.ViewLocationFormats.Add("/{0}.cshtml");
+                });
         }
 
         public void Configure(WebApplication app)
         {
+            app.Use(async (context, next) =>
+            {
+                Debug.WriteLine(context.Request.Path);
+                await next.Invoke();
+            });          
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:5000"));
 
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=App}/{action=Start}");
             });
         }
     }

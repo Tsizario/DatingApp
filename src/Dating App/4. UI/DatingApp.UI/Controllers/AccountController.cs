@@ -2,10 +2,12 @@
 using DatingApp.BLL.Services.TokenService;
 using DatingApp.BLL.Services.UserService;
 using DatingApp.Domain.Constants;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.WebApi.Controllers
 {
+    [Route("[controller]/")]
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
@@ -17,32 +19,15 @@ namespace DatingApp.WebApi.Controllers
             _tokenService = tokenService;
         }
 
-        //[HttpPost("register")]
-        //public async Task<ActionResult<AppUserTokenDto>> Register(AppUserRegisterDto registerDto)
-        //{
-        //    var appUserExists = await _userService.IsAppUserExists(registerDto.Username);
-
-        //    if (appUserExists.Success)
-        //        return BadRequest(Errors.AppUserExists);
-
-        //    var result = await _userService.AddAppUser(registerDto);
-
-        //    if (!result.Success)
-        //        return BadRequest(result.Error);
-
-        //    var appUserTokenDto = new AppUserTokenDto
-        //    {
-        //        Username = registerDto.Username,
-        //        Token = _tokenService.CreateToken(result.Value)
-        //    };
-
-        //    return CreatedAtAction(nameof(Register), appUserTokenDto);
-        //}
-
-        [HttpGet]
-        public IActionResult Login()
+        [HttpGet("login")]
+        public async Task<IActionResult> Login()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "App"); //Index action of App controller
+            }
+
+            return await Task.Run(() => View());
         }
 
         [HttpPost]
@@ -66,5 +51,40 @@ namespace DatingApp.WebApi.Controllers
 
             return View(loginDto);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "App");
+        }
+
+        [HttpGet("register")]
+        public async Task<IActionResult> Register()
+        {
+            return await Task.Run(() => View());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(AppUserRegisterDto registerDto)
+        {
+            var appUserExists = await _userService.IsAppUserExists(registerDto.Username);
+
+            if (appUserExists.Success)
+                return BadRequest(Errors.AppUserExists);
+
+            var result = await _userService.AddAppUser(registerDto);
+
+            if (!result.Success)
+                return BadRequest(result.Error);
+
+            var appUserTokenDto = new AppUserTokenDto
+            {
+                Username = registerDto.Username,
+                Token = _tokenService.CreateToken(result.Value)
+            };
+
+            return CreatedAtAction(nameof(Register), appUserTokenDto);
+        }        
     }
 }
