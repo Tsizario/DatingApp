@@ -5,8 +5,8 @@ namespace DatingApp.WebApi.Controllers
     [Route("[controller]/")]
     public class AppController : Controller
     {
-        [HttpGet("start")]
-        public IActionResult Index()
+        [HttpGet("Start")]
+        public IActionResult Start()
         {
             return View();
         }

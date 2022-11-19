@@ -52,12 +52,12 @@ namespace DatingApp.WebApi.Controllers
             return View(loginDto);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Logout()
-        {
-            await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "App");
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> Logout()
+        //{
+        //    await _signInManager.SignOutAsync();
+        //    return RedirectToAction("Index", "App");
+        //}
 
         [HttpGet("register")]
         public async Task<IActionResult> Register()
