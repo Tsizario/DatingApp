@@ -2,7 +2,6 @@
 using DatingApp.BLL.Services.TokenService;
 using DatingApp.BLL.Services.UserService;
 using DatingApp.Domain.Constants;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.WebApi.Controllers
@@ -19,37 +18,37 @@ namespace DatingApp.WebApi.Controllers
             _tokenService = tokenService;
         }
 
-        [HttpGet("login")]
-        public async Task<IActionResult> Login()
+        [HttpGet("Login")]
+        public IActionResult Login()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "App"); //Index action of App controller
-            }
 
-            return await Task.Run(() => View());
+            return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Login([FromBody] AppUserLoginDto loginDto)
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(AppUserLoginDto loginDto)
         {
-            var appUser = await _userService.GetAppUserByUsername(loginDto.Username);
-
-            if (!appUser.Success)
-                return NotFound(appUser.Error);
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
 
             var result = await _userService.LoginAppUser(loginDto);
 
-            if (!result.Success)
-                return Unauthorized(result.Error);
-
-            var appUserTokenDto = new AppUserTokenDto
+            if (result.Success)
             {
-                Username = loginDto.Username,
-                Token = _tokenService.CreateToken(result.Value)
-            };
+                if (!Request.Query.Keys.Contains("ReturnUrl"))
+                {
+                    return RedirectToAction("Start", "App");
+                }
 
-            return View(loginDto);
+                return Redirect(Request.Query["ReturnUrl"].First());
+            }
+
+            TempData["Error"] = Errors.AppUserIncorrectCredentials;
+            ModelState.Clear();
+
+            return View();
         }
 
         //[HttpGet]
@@ -59,24 +58,30 @@ namespace DatingApp.WebApi.Controllers
         //    return RedirectToAction("Index", "App");
         //}
 
-        [HttpGet("register")]
-        public async Task<IActionResult> Register()
+        [HttpGet("Register")]
+        public IActionResult Register()
         {
-            return await Task.Run(() => View());
+            return View();
         }
 
-        [HttpPost]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register(AppUserRegisterDto registerDto)
         {
             var appUserExists = await _userService.IsAppUserExists(registerDto.Username);
 
             if (appUserExists.Success)
-                return BadRequest(Errors.AppUserExists);
+            {
+                TempData["Error"] = appUserExists.Error;
+                return View();
+            }
 
             var result = await _userService.AddAppUser(registerDto);
 
             if (!result.Success)
-                return BadRequest(result.Error);
+            {
+                TempData["Error"] = result.Error;
+                return View();
+            }
 
             var appUserTokenDto = new AppUserTokenDto
             {
@@ -84,7 +89,18 @@ namespace DatingApp.WebApi.Controllers
                 Token = _tokenService.CreateToken(result.Value)
             };
 
-            return CreatedAtAction(nameof(Register), appUserTokenDto);
-        }        
+            if (!Request.Query.Keys.Contains("ReturnUrl"))
+            {
+                return RedirectToAction("Start", "App");
+            }
+
+            return Redirect(Request.Query["ReturnUrl"].First());
+        }
+
+        [HttpGet]
+        public IActionResult Cancel()
+        {
+            return RedirectToAction("Start", "App");
+        }
     }
 }

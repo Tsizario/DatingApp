@@ -30,12 +30,6 @@ namespace API
 
         public void Configure(WebApplication app)
         {
-            app.Use(async (context, next) =>
-            {
-                Debug.WriteLine(context.Request.Path);
-                await next.Invoke();
-            });          
-
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -53,7 +47,7 @@ namespace API
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=App}/{action=Start}");
+                    pattern: "{controller=App}/{action=Start}/{id?}");
             });
         }
     }
