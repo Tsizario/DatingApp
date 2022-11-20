@@ -7,23 +7,22 @@
     <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
 }
 
-    <h2 class="text-center text-success my-4">@ViewBag.Title</h2>
+    <h2 class="text-center my-4">@ViewBag.Title</h2>
     <div class="row">
         <div class="col-md-4 offset-md-4">
             <div class="card card-body bg-light">
-                <form method="post">
-                    <div asp-validation-summary="ModelOnly" class="form-group"></div>
-                    <div>
+                <form method="post">                    
+                    <div class="form-group">
                         <label asp-for="Username">Username</label>
                         <input asp-for="Username" class="form-control" type="text" placeholder="Username"/>
                         <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <label asp-for="Password">Password</label>
                         <input asp-for="Password" class="form-control" type="password" placeholder="Password"/>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <div class="form-check">
                             <input asp-for="RememberMe" type="checkbox" class="form-check-input" />
                             <label asp-for="RememberMe" class="form-check-label">Remember me?</label>
@@ -31,8 +30,10 @@
                         <span asp-validation-for="RememberMe" class="text-warning"></span>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <input type="submit" value="Login" class="btn btn-outline-success fs-5" />
+                        <input type="submit" value="Login" class="btn btn-outline-success" />
                     </div>
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group text-center text-danger mt-2">@TempData["Error"]</div>
                 </form>
             </div>
         </div>
