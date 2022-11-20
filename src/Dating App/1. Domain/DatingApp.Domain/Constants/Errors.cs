@@ -8,5 +8,6 @@
         public const string AppUserAddingError = "Error while adding user";
         public const string AppUserPasswordInvalid = "The password is invalid";
         public const string AppUserUsernameInvalid = "The username is invalid";
+        public const string AppUserIncorrectCredentials = "Incorrect login or password";
     }
 }
