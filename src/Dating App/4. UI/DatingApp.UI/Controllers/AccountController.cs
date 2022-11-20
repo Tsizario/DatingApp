@@ -1,4 +1,5 @@
-﻿using DatingApp.BLL.DTO;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using DatingApp.BLL.DTO;
 using DatingApp.BLL.Services.TokenService;
 using DatingApp.BLL.Services.UserService;
 using DatingApp.Domain.Constants;
@@ -10,12 +11,19 @@ namespace DatingApp.WebApi.Controllers
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
-        private readonly ITokenService _tokenService;
+        private readonly ITokenService _tokenService; 
+        private readonly ILogger<AccountController> _logger;
+        private readonly INotyfService _toastNotification;
 
-        public AccountController(IUserService userService, ITokenService tokenService)
+        public AccountController(IUserService userService, 
+            ITokenService tokenService, 
+            ILogger<AccountController> logger,
+            INotyfService sideNotification)
         {
             _userService = userService;
-            _tokenService = tokenService;
+            _tokenService = tokenService; 
+            _logger = logger;
+            _toastNotification = sideNotification;
         }
 
         [HttpGet("Login")]
@@ -36,7 +44,7 @@ namespace DatingApp.WebApi.Controllers
 
             if (!result.Success)
             {
-                TempData["Error"] = result.Error;
+                _toastNotification.Error(result.Error);
                 ModelState.Clear();
 
                 return View();
@@ -44,8 +52,10 @@ namespace DatingApp.WebApi.Controllers
 
             if (!Request.Query.Keys.Contains("ReturnUrl"))
             {
+                _toastNotification.Success("Authentificated");
+
                 return RedirectToAction("Start", "App");
-            }
+            }            
 
             return Redirect(Request.Query["ReturnUrl"].First());            
         }
@@ -70,8 +80,9 @@ namespace DatingApp.WebApi.Controllers
 
             if (appUserExists.Success)
             {
-                TempData["Error"] = Errors.AppUserExists;
+                _toastNotification.Error(Errors.AppUserExists);
                 ModelState.Clear();
+
                 return View();
             }
 
@@ -79,8 +90,9 @@ namespace DatingApp.WebApi.Controllers
 
             if (!result.Success)
             {
-                TempData["Error"] = result.Error;
+                _toastNotification.Error(result.Error);
                 ModelState.Clear();
+
                 return View();
             }
 
@@ -92,6 +104,8 @@ namespace DatingApp.WebApi.Controllers
 
             if (!Request.Query.Keys.Contains("ReturnUrl"))
             {
+                _toastNotification.Success(Notifications.SuccessfulLogin);
+
                 return RedirectToAction("Start", "App");
             }
 

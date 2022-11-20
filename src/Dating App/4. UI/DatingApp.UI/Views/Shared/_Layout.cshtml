@@ -85,10 +85,11 @@
             &copy; 2022 - Bingo! - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/js/index.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/popper.js/umd/popper.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/index.js"></script>
     @await RenderSectionAsync("Scripts", false)
+    @await Component.InvokeAsync("Notyf")
 </body>
 </html>

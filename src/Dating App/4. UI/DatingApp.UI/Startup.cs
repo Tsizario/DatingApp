@@ -1,3 +1,5 @@
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
 using Bll.Extensions;
 using DatingApp.BLL.Extensions;
 using DatingApp.DAL.Extensions;
@@ -19,6 +21,13 @@ namespace API
             services.AddDalServices(_configuration);
             services.AddBllServices(_configuration);           
             services.AddBllIdentityServices(_configuration);
+           
+            services.AddNotyf(config =>
+            {
+                config.DurationInSeconds = 3;
+                config.IsDismissable = true;
+                config.Position = NotyfPosition.BottomRight;
+            });
 
             services.AddCors();
             services.AddMvc()
@@ -42,6 +51,10 @@ namespace API
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseNotyf();
+
+            app.MapRazorPages();
 
             app.UseEndpoints(endpoints =>
             {
