@@ -1,11 +1,10 @@
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
 using Bll.Extensions;
 using DatingApp.BLL.Extensions;
 using DatingApp.DAL.Extensions;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
-namespace API
+namespace DatingApp.UI
 {
     public class Startup
     {
@@ -19,10 +18,18 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDalServices(_configuration);
-            services.AddBllServices(_configuration);           
+            services.AddBllServices(_configuration);
             services.AddBllIdentityServices(_configuration);
 
+            services.AddNotyf(config =>
+            {
+                config.DurationInSeconds = 3;
+                config.IsDismissable = true;
+                config.Position = NotyfPosition.BottomRight;
+            });
+
             services.AddCors();
+
             services.AddMvc();
         }
 
@@ -34,17 +41,18 @@ namespace API
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:5000"));
 
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseNotyf();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers();     // нет определенных маршрутов
             });
         }
     }

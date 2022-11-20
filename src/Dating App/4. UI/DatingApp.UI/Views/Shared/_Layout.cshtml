@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Bingo! - @ViewBag.Title</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/lib/fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    @await RenderSectionAsync("Head", false)
+</head>
+<body>
+    <header style="background-color: #e3f2fd;">
+        <nav class="navbar navbar-expand-md navbar-light">
+            <div class="container">
+                <a class="navbar-brand fs-3" asp-controller="App" asp-action="Home">
+                    <i class="fa-regular fa-heart me-0"></i>
+                    Bingo!
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#theMenu" aria-expanded="false" aria-controls="theMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="theMenu" class="collapse navbar-collapse">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @* Welcome @User.Identity.Name*@
+                    }
+                    <ul class="navbar-nav fs-5">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="App" asp-action="Contact">Other people</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="App" asp-action="Index">Messages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="App" asp-action="About">Matches</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto fs-5">
+                        <li>
+                            <div class="dropdown">
+                                <a class="btn btn-light dropdown-toggle" type="button"
+                                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Welcome user!
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="App" asp-action="EditProfile">
+                                            <i class="fa-solid fa-pen-to-square me-1"></i>Edit profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        @*@if (User.Identity.IsAuthenticated)
+                                        {*@
+                                        <a class="dropdown-item" asp-controller="Account" asp-action="Logout">
+                                            <i class="fa-solid fa-right-from-bracket"></i>
+                                            Logout
+                                        </a>
+                                        @*}
+                                        else
+                                        {
+                                        <a class="nav-link" asp-controller="Account" asp-action="Login">
+                                        <i class="fa-solid fa-right-to-bracket"></i>
+                                        Login
+                                        </a>
+                                        }*@
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </section>
+    <footer class="border-top footer text-muted opacity-100">
+        <div class="container">
+            &copy; 2022 - Bingo! - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/popper.js/umd/popper.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/index.js"></script>
+    @await RenderSectionAsync("Scripts", false)
+    @await Component.InvokeAsync("Notyf")
+</body>
+</html>
