@@ -21,7 +21,6 @@ namespace DatingApp.WebApi.Controllers
         [HttpGet("Login")]
         public IActionResult Login()
         {
-
             return View();
         }
 
@@ -35,20 +34,20 @@ namespace DatingApp.WebApi.Controllers
 
             var result = await _userService.LoginAppUser(loginDto);
 
-            if (result.Success)
+            if (!result.Success)
             {
-                if (!Request.Query.Keys.Contains("ReturnUrl"))
-                {
-                    return RedirectToAction("Start", "App");
-                }
+                TempData["Error"] = result.Error;
+                ModelState.Clear();
 
-                return Redirect(Request.Query["ReturnUrl"].First());
+                return View();
             }
 
-            TempData["Error"] = Errors.AppUserIncorrectCredentials;
-            ModelState.Clear();
+            if (!Request.Query.Keys.Contains("ReturnUrl"))
+            {
+                return RedirectToAction("Start", "App");
+            }
 
-            return View();
+            return Redirect(Request.Query["ReturnUrl"].First());            
         }
 
         //[HttpGet]
@@ -71,7 +70,8 @@ namespace DatingApp.WebApi.Controllers
 
             if (appUserExists.Success)
             {
-                TempData["Error"] = appUserExists.Error;
+                TempData["Error"] = Errors.AppUserExists;
+                ModelState.Clear();
                 return View();
             }
 
@@ -80,6 +80,7 @@ namespace DatingApp.WebApi.Controllers
             if (!result.Success)
             {
                 TempData["Error"] = result.Error;
+                ModelState.Clear();
                 return View();
             }
 
