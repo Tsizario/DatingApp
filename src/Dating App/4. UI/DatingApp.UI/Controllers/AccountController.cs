@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.WebApi.Controllers
 {
-    [Route("[controller]/")]
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
@@ -26,13 +25,13 @@ namespace DatingApp.WebApi.Controllers
             _toastNotification = sideNotification;
         }
 
-        [HttpGet("Login")]
+        [HttpGet("login")]
         public IActionResult Login()
         {
             return View();
         }
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login(AppUserLoginDto loginDto)
         {
             if (!ModelState.IsValid)
@@ -54,7 +53,7 @@ namespace DatingApp.WebApi.Controllers
             {
                 _toastNotification.Success("Authentificated");
 
-                return RedirectToAction("Start", "App");
+                return RedirectToAction("Home", "App");
             }            
 
             return Redirect(Request.Query["ReturnUrl"].First());            
@@ -67,13 +66,13 @@ namespace DatingApp.WebApi.Controllers
         //    return RedirectToAction("Index", "App");
         //}
 
-        [HttpGet("Register")]
+        [HttpGet("register")]
         public IActionResult Register()
         {
             return View();
         }
 
-        [HttpPost("Register")]
+        [HttpPost("register")]
         public async Task<IActionResult> Register(AppUserRegisterDto registerDto)
         {
             var appUserExists = await _userService.IsAppUserExists(registerDto.Username);
@@ -106,16 +105,16 @@ namespace DatingApp.WebApi.Controllers
             {
                 _toastNotification.Success(Notifications.SuccessfulLogin);
 
-                return RedirectToAction("Start", "App");
+                return RedirectToAction("Home", "App");
             }
 
             return Redirect(Request.Query["ReturnUrl"].First());
         }
 
-        [HttpGet]
+        [HttpGet("{action}")]
         public IActionResult Cancel()
         {
-            return RedirectToAction("Start", "App");
+            return RedirectToAction("Home", "App");
         }
     }
 }

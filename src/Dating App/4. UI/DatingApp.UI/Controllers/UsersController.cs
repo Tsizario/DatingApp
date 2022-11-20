@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace DatingApp.WebApi.Controllers
 {
     [Authorize]
-    [Route("[controller]/")]
-    public class UsersController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
 
