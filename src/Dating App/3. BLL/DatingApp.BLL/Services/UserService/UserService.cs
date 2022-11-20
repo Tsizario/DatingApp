@@ -64,7 +64,7 @@ namespace DatingApp.BLL.Services.UserService
             var appUser = await _userRepository.GetUserByUsernameAsync(loginDto.Username);
 
             if (appUser is null)
-                return ServiceResult<AppUser>.CreateFailure(Errors.AppUserNotFound);
+                return ServiceResult<AppUser>.CreateFailure(Errors.AppUserIncorrectCredentials);
 
             using var hmac = new HMACSHA256(appUser.PasswordSalt);
 
@@ -74,7 +74,7 @@ namespace DatingApp.BLL.Services.UserService
 
             return isEqual == true
                 ? ServiceResult<AppUser>.CreateSuccess(appUser)
-                : ServiceResult<AppUser>.CreateFailure(Errors.AppUserPasswordInvalid);                
+                : ServiceResult<AppUser>.CreateFailure(Errors.AppUserIncorrectCredentials);                
         }
 
         public async Task<ServiceResult<bool>> IsAppUserExists(string username)
