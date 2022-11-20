@@ -3,9 +3,8 @@ using AspNetCoreHero.ToastNotification.Extensions;
 using Bll.Extensions;
 using DatingApp.BLL.Extensions;
 using DatingApp.DAL.Extensions;
-using System.Diagnostics;
 
-namespace API
+namespace DatingApp.UI
 {
     public class Startup
     {
@@ -19,9 +18,9 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDalServices(_configuration);
-            services.AddBllServices(_configuration);           
+            services.AddBllServices(_configuration);
             services.AddBllIdentityServices(_configuration);
-           
+
             services.AddNotyf(config =>
             {
                 config.DurationInSeconds = 3;
@@ -30,11 +29,8 @@ namespace API
             });
 
             services.AddCors();
-            services.AddMvc()
-                .AddRazorOptions(options =>
-                {
-                    options.ViewLocationFormats.Add("/{0}.cshtml");
-                });
+
+            services.AddMvc();
         }
 
         public void Configure(WebApplication app)
@@ -54,13 +50,9 @@ namespace API
 
             app.UseNotyf();
 
-            app.MapRazorPages();
-
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=App}/{action=Start}/{id?}");
+                endpoints.MapControllers();     // нет определенных маршрутов
             });
         }
     }

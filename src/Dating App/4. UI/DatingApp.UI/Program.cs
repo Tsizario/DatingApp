@@ -1,10 +1,6 @@
 using DatingApp.DAL.ApplicationSeed;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
 
-namespace API
+namespace DatingApp.UI
 {
     public class Program
     {
