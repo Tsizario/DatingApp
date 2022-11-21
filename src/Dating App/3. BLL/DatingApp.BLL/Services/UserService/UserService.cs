@@ -21,25 +21,25 @@ namespace DatingApp.BLL.Services.UserService
             _mapper = mapper;
         }
 
-        public async Task<ServiceResult<IEnumerable<AppUserDto>>> GetAllAppUsers()
+        public async Task<ServiceResult<IEnumerable<MemberDto>>> GetAllAppUsers()
         {
             var appUsers = await _userRepository.GetAllUsersAsync();
-            var appUserDtos = _mapper.Map<IEnumerable<AppUserDto>>(appUsers);
+            var appUserDtos = _mapper.Map<IEnumerable<MemberDto>>(appUsers);
 
             return appUserDtos is not null
-                ? ServiceResult<IEnumerable<AppUserDto>>.CreateSuccess(appUserDtos)
-                : ServiceResult<IEnumerable<AppUserDto>>.CreateFailure(Errors.AppUsersNotFound);
+                ? ServiceResult<IEnumerable<MemberDto>>.CreateSuccess(appUserDtos)
+                : ServiceResult<IEnumerable<MemberDto>>.CreateFailure(Errors.AppUsersNotFound);
         }
 
-        public async Task<ServiceResult<AppUserDto>> GetAppUserByUsername(string username)
+        public async Task<ServiceResult<MemberDto>> GetAppUserByUsername(string username)
         {
             var appUser = await _userRepository.GetUserByUsernameAsync(username);
 
-            var appUserDto = _mapper.Map<AppUserDto>(appUser);
+            var appUserDto = _mapper.Map<MemberDto>(appUser);
 
             return appUserDto is not null
-                ? ServiceResult<AppUserDto>.CreateSuccess(appUserDto)
-                : ServiceResult<AppUserDto>.CreateFailure(Errors.AppUserNotFound);
+                ? ServiceResult<MemberDto>.CreateSuccess(appUserDto)
+                : ServiceResult<MemberDto>.CreateFailure(Errors.AppUserNotFound);
         }
 
         public async Task<ServiceResult<AppUser>> AddAppUser(AppUserRegisterDto registerDto)

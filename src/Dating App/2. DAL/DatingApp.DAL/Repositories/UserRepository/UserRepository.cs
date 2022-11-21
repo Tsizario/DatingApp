@@ -14,18 +14,22 @@ namespace DatingApp.DAL.Repositories.UserRepository
 
         public async Task<AppUser> GetUserByIdAsync(int userId)
         {
-            return await _dbContext.Users.FindAsync(userId);
+            return await _dbContext.Users
+                .FindAsync(userId);
         }
 
         public async Task<AppUser> GetUserByUsernameAsync(string username)
         {
             return await _dbContext.Users
+                .Include(x => x.Photos)
                 .SingleOrDefaultAsync(user => user.Username == username);
         }
 
         public async Task<IEnumerable<AppUser>> GetAllUsersAsync()
         {
-            return await _dbContext.Users.ToListAsync();
+            return await _dbContext.Users
+                .Include(x => x.Photos)
+                .ToListAsync();
         }
 
         public async Task<AppUser> AddUserAsync(AppUser appUser)

@@ -2,7 +2,7 @@
 
 namespace DatingApp.BLL.DTO
 {
-    public class AppUserDto
+    public class MemberDto
     {
         public string Username { get; set; }
 

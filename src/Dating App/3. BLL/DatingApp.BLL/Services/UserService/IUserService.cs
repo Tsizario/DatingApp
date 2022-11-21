@@ -6,9 +6,9 @@ namespace DatingApp.BLL.Services.UserService
 {
     public interface IUserService
     {
-        Task<ServiceResult<AppUserDto>> GetAppUserByUsername(string username);
+        Task<ServiceResult<MemberDto>> GetAppUserByUsername(string username);
 
-        Task<ServiceResult<IEnumerable<AppUserDto>>> GetAllAppUsers();
+        Task<ServiceResult<IEnumerable<MemberDto>>> GetAllAppUsers();
 
         Task<ServiceResult<AppUser>> AddAppUser(AppUserRegisterDto appUserDto);
 
