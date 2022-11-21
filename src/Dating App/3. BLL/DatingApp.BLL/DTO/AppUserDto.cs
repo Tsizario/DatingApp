@@ -26,8 +26,6 @@ namespace DatingApp.BLL.DTO
 
         public DateTime LastActive { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
-
         public ICollection<PhotoDto> Photos { get; set; }
     }
 }
