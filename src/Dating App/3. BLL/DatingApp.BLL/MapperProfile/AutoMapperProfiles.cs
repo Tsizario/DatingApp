@@ -12,8 +12,16 @@ namespace DatingApp.BLL.MapperProfile
             CreateMap<AppUser, MemberDto>()
                 .ForMember(destination => destination.Age, optional =>
                     optional.MapFrom(source => source.DateOfBirth.CalculateAge()));
+
+            CreateMap<AppUser, MemberDto>()
+                .ForMember(destination => destination.PhotoUrl, optional =>
+                    optional.MapFrom(source => source.Photos
+                        .SingleOrDefault(photo => photo.IsMain)!.Url));
+
             CreateMap<AppUser, AppUserRegisterDto>().ReverseMap();
+
             CreateMap<AppUser, AppUserLoginDto>();
+
             CreateMap<AppUser, AppUserTokenDto>();
 
             CreateMap<Photo, PhotoDto>();
