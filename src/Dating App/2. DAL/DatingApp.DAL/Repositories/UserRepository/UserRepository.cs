@@ -5,9 +5,9 @@ namespace DatingApp.DAL.Repositories.UserRepository
 {
     internal class UserRepository : IUserRepository
     {
-        private readonly AppContext _dbContext;
+        private readonly ApplicationDbContext _dbContext;
 
-        public UserRepository(AppContext dbContext)
+        public UserRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }

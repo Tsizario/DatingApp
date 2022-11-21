@@ -1,3 +1,4 @@
+using DatingApp.DAL;
 using DatingApp.DAL.ApplicationSeed;
 
 namespace DatingApp.UI
@@ -26,7 +27,7 @@ namespace DatingApp.UI
             }
         }
 
-        private static void RunSeeding(WebApplication app)
+        private static async void RunSeeding(WebApplication app)
         {
             using (var scope = app.Services.CreateScope())
             {
@@ -35,6 +36,8 @@ namespace DatingApp.UI
                 try
                 {
                     var seeder = scope.ServiceProvider.GetRequiredService<AppUserSeed>();
+                    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
                     seeder.SeedUsersAsync().Wait();
                     logger.LogInformation("The seeding is done");                    
                 }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DatingApp.DAL.Migrations
 {
-    [DbContext(typeof(AppContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20221109232923_InitialCreate")]
     partial class InitialCreate
     {

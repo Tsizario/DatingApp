@@ -11,7 +11,7 @@ namespace DatingApp.DAL.Extensions
         public static IServiceCollection AddDalServices(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddDbContext<AppContext>(config =>
+            services.AddDbContext<ApplicationDbContext>(config =>
             {
                 config.UseSqlServer(
                     configuration.GetConnectionString("CourseDatingAppConnection"));

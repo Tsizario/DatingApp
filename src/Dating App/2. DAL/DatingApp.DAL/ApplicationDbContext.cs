@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.DAL
 {
-    public class AppContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public AppContext(DbContextOptions options)
+        public ApplicationDbContext(DbContextOptions options)
         : base(options)
         {
         }
