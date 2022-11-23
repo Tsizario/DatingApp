@@ -27,4 +27,6 @@
     <ProjectReference Include="..\..\1. Domain\DatingApp.Domain\DatingApp.Domain.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties applicationseed_4appuserseeddata_1json__JsonSchema="https://docs.gradle.com/build-cache-node/schema/build-cache-node-config-schema-5.json" /></VisualStudio></ProjectExtensions>
+
 </Project>
