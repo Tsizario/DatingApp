@@ -2,6 +2,6 @@
 {
     public class Notifications
     {
-        public const string SuccessfulLogin = "Authentificated";
+        public const string Successful = "Successful";
     }
 }

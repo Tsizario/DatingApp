@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MemberDto>
+@{
+    ViewBag.Title = "Members";
+}
+
+<div class="row mt-4">
+    @foreach (var member in Model)
+    {
+        <div class="col-lg-2 mb-3">
+            <div class="card sized-card">
+                <div class="card-img-wrapper text-center">
+                    <img class="card-img-top d-block" src="@member.PhotoUrl" alt="@member.Name" />
+                    <ul class="list-inline member-icons animate">                        
+                        <li class="list-inline-item">
+                            <button class="btn btn-primary">
+                                <a class="nav-link" asp-controller="Users" asp-action="Members">
+                                    <i class="fa-solid fa-heart"></i>
+                                </a>
+                            </button>
+                        </li>
+                        <li class="list-inline-item">
+                            <button class="btn btn-primary">
+                                <a class="nav-link" asp-controller="Users" asp-action="Member">
+                                    <i class="fa-solid fa-user"></i>
+                                </a>
+                            </button>
+                        </li>
+                        <li class="list-inline-item">
+                            <button class="btn btn-primary">
+                                <a class="nav-link" asp-controller="Users" asp-action="Members">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </a>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body p-1 mt-3">
+                    <div class="card-title text-black mt-1">
+                        <i class="fa-solid fa-user d-inline"></i>
+                        @member.Name, @member.Age
+                    </div>
+                    <p class="card-text text-muted ps-2 mt-2">@member.City</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
