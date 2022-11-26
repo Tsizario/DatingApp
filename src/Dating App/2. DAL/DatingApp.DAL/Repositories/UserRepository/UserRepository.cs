@@ -12,13 +12,13 @@ namespace DatingApp.DAL.Repositories.UserRepository
             _dbContext = dbContext;
         }
 
-        public async Task<AppUser> GetUserByIdAsync(int userId)
+        public async Task<AppUser> GetByIdAsync(int userId)
         {
             return await _dbContext.Users
                 .FindAsync(userId);
         }
 
-        public async Task<AppUser> GetUserByUsernameAsync(string username)
+        public async Task<AppUser> GetByUsernameAsync(string username)
         {
             return await _dbContext.Users
                 .Include(x => x.Photos)
@@ -32,13 +32,29 @@ namespace DatingApp.DAL.Repositories.UserRepository
                 .ToListAsync();
         }
 
-        public async Task<AppUser> AddUserAsync(AppUser appUser)
+        public async Task<AppUser> AddAsync(AppUser appUser)
         {
             await _dbContext.Users.AddAsync(appUser);
 
             await _dbContext.SaveChangesAsync();
 
             return appUser;
+        }
+
+        public async Task<bool> UpdateAsync(AppUser updatedUser)
+        {
+            var user = await GetByIdAsync(updatedUser.Id);
+
+            if (user == null)
+            {
+                return false;
+            }
+           
+            _dbContext.Entry(user).State = EntityState.Modified;
+
+            await _dbContext.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task<bool> ExistsAsync(string username)

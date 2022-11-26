@@ -4,13 +4,13 @@ namespace DatingApp.DAL.Repositories.UserRepository
 {
     public interface IUserRepository
     {
-        Task<AppUser> GetUserByIdAsync(int id);
+        Task<AppUser> GetByIdAsync(int id);
 
-        Task<AppUser> GetUserByUsernameAsync(string username);
+        Task<AppUser> GetByUsernameAsync(string username);
 
         Task<IEnumerable<AppUser>> GetAllUsersAsync();
 
-        Task<AppUser> AddUserAsync(AppUser appUser);
+        Task<AppUser> AddAsync(AppUser appUser);
 
         Task<bool> ExistsAsync(string username);
     }
