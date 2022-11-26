@@ -1,0 +1,98 @@
+﻿@model AppUserDto
+@{
+    var photoUrl = Model.Photos.First(x => x.IsMain).Url is not null 
+        ? Model.Photos.First(x => x.IsMain).Url 
+        : "~/img/user.png";
+}
+
+@section Scripts {
+    
+}
+
+    <div class="col-4">
+        <h1>Your profile</h1>
+    </div>
+    <div class="col-8">
+        <div id="BeforeYouLeaveDiv" class="alert alert-info">
+            <p><strong>Information: </strong>You have made changes. Any unsaved changes will be lost</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="card mt-4">
+                <img src=@photoUrl alt=@Model.Name
+                     class="card-img-top img-thumbnail mx-auto mt-3" />
+                <div class="card-body">
+                    <div>
+                        <strong>Location:</strong>
+                        <p>@Model.City, @Model.Region</p>
+                    </div>
+                    <div>
+                        <strong>Age:</strong>
+                        <p>@Model.Age</p>
+                    </div>
+                    <div>
+                        <strong>Last active:</strong>
+                        <p>@Model.LastActive</p>
+                    </div>
+                    <div>
+                        <strong>Member since:</strong>
+                        <p class="mb-0">@Model.Created</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button form="editForm" type="submit" class="btn btn-outline-success col-12">
+                        <i class="fas fa-save"></i>Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="tab mt-4">
+            <button class="tablinks" onclick="openProperty(event, 'Name')">About @Model.Name</button>
+            <button class="tablinks" onclick="openProperty(event, 'Photos')">Edit photos</button>
+        </div>
+
+        <div id="Name" class="tabcontent">
+            <form method="put"
+                id="editForm" type="submit" 
+                asp-controller="AppUsers"
+                asp-action="UpdateUser">
+                <input type="hidden"/>
+                <h4 class="mt-2">Bio</h4>
+                <textarea class="form-control" 
+                        asp-for=@Model.Bio 
+                        name="bio"
+                        rows="6"></textarea>
+                <h4 class="mt-2">Looking for</h4>
+                <textarea class="form-control"
+                        asp-for=@Model.LookingFor
+                        name="lookingFor"
+                        rows="6"></textarea>
+                <h4 class="mt-2">Interests</h4>
+                <textarea class="form-control"
+                        asp-for=@Model.Interests
+                        name="interests"
+                        rows="6"></textarea>
+                <h4 class="mt-2">Location Details: </h4>
+                <div class="d-flex flex-row align-items-center">
+                    <label asp-for="City">City: </label>
+                    <input type="text" asp-for=@Model.City name="city" class="form-control mx-2" />
+                    <label asp-for="Region">Region: </label>
+                    <input type="text" asp-for=@Model.Region name="region" class="form-control mx-2" />
+                </div>
+            </form>
+            
+        </div>
+
+        <div id="Edit photos" class="tabcontent">
+            <p>Photo edit will go here...</p>
+        </div>
+    </div>
+    
+@section Scripts {
+    <script>
+        window.onbeforeunload 
+    </script>
+}

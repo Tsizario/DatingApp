@@ -21,25 +21,25 @@ namespace DatingApp.BLL.Services.UserService
             _mapper = mapper;
         }
 
-        public async Task<ServiceResult<IEnumerable<MemberDto>>> GetAllAppUsers()
+        public async Task<ServiceResult<IEnumerable<AppUserDto>>> GetAllAppUsers()
         {
             var appUsers = await _userRepository.GetAllUsersAsync();
-            var appUserDtos = _mapper.Map<IEnumerable<MemberDto>>(appUsers);
+            var appUserDtos = _mapper.Map<IEnumerable<AppUserDto>>(appUsers);
 
             return appUserDtos is not null
-                ? ServiceResult<IEnumerable<MemberDto>>.CreateSuccess(appUserDtos)
-                : ServiceResult<IEnumerable<MemberDto>>.CreateFailure(Errors.AppUsersNotFound);
+                ? ServiceResult<IEnumerable<AppUserDto>>.CreateSuccess(appUserDtos)
+                : ServiceResult<IEnumerable<AppUserDto>>.CreateFailure(Errors.AppUsersNotFound);
         }
 
-        public async Task<ServiceResult<MemberDto>> GetAppUserByUsername(string username)
+        public async Task<ServiceResult<AppUserDto>> GetAppUserByUsername(string username)
         {
-            var appUser = await _userRepository.GetUserByUsernameAsync(username);
+            var appUser = await _userRepository.GetByUsernameAsync(username);
 
-            var appUserDto = _mapper.Map<MemberDto>(appUser);
+            var appUserDto = _mapper.Map<AppUserDto>(appUser);
 
             return appUserDto is not null
-                ? ServiceResult<MemberDto>.CreateSuccess(appUserDto)
-                : ServiceResult<MemberDto>.CreateFailure(Errors.AppUserNotFound);
+                ? ServiceResult<AppUserDto>.CreateSuccess(appUserDto)
+                : ServiceResult<AppUserDto>.CreateFailure(Errors.AppUserNotFound);
         }
 
         public async Task<ServiceResult<AppUser>> AddAppUser(AppUserRegisterDto registerDto)
@@ -52,16 +52,25 @@ namespace DatingApp.BLL.Services.UserService
             appUser.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
             appUser.PasswordSalt = hmac.Key;
 
-            appUser = await _userRepository.AddUserAsync(appUser);
+            appUser = await _userRepository.AddAsync(appUser);
 
             return appUser is not null
                 ? ServiceResult<AppUser>.CreateSuccess(appUser)
                 : ServiceResult<AppUser>.CreateFailure(Errors.AppUserAddingError);
         }
+        public async Task<ServiceResult<bool>> UpdateAppUserByUsername(AppUserUpdateDto updatedDto)
+        {
+            var updatedAppUser = _mapper.Map<AppUser>(updatedDto);
 
+            var isUpdatedUser = await _userRepository.UpdateAsync(updatedAppUser);
+
+            return isUpdatedUser
+                ? ServiceResult<bool>.CreateSuccess(isUpdatedUser)
+                : ServiceResult<bool>.CreateFailure(Errors.AppUserNotFound);
+        }
         public async Task<ServiceResult<AppUser>> LoginAppUser(AppUserLoginDto loginDto)
         {
-            var appUser = await _userRepository.GetUserByUsernameAsync(loginDto.Username);
+            var appUser = await _userRepository.GetByUsernameAsync(loginDto.Username);
 
             if (appUser is null)
                 return ServiceResult<AppUser>.CreateFailure(Errors.AppUserIncorrectCredentials);

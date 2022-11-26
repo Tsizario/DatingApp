@@ -12,8 +12,6 @@ namespace DatingApp.BLL.DTO
 
         public int Age { get; set; }
 
-        public GenderType Gender { get; set; }
-
         public string Bio { get; set; }
 
         public string LookingFor { get; set; }

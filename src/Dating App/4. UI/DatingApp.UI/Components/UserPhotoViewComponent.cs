@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.UI.Components
 {
-    public class PhotoViewComponent : ViewComponent
+    public class UserPhotoViewComponent : ViewComponent
     {
-        public PhotoViewComponent()
+        public UserPhotoViewComponent()
         {
         }
 

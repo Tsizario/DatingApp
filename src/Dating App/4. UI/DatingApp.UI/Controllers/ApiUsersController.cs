@@ -63,7 +63,7 @@ namespace DatingApp.WebApi.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<AppUserDto>>> GetUsers()
         {
             var users = await _userService.GetAllAppUsers();
 
@@ -76,7 +76,7 @@ namespace DatingApp.WebApi.Controllers
 
         [Authorize]
         [HttpGet("{username}")]
-        public async Task<ActionResult<MemberDto>> GetUser(string username)
+        public async Task<ActionResult<AppUserDto>> GetUser(string username)
         {
             var user = await _userService.GetAppUserByUsername(username);
 

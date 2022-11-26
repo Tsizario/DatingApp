@@ -9,7 +9,7 @@ namespace DatingApp.BLL.MapperProfile
     {
         public AutoMapperProfiles()
         {
-            CreateMap<AppUser, MemberDto>()
+            CreateMap<AppUser, AppUserDto>()
                 .ForMember(destination => destination.Age, optional =>
                     optional.MapFrom(source => source.DateOfBirth.CalculateAge()))
                 .ForMember(destination => destination.PhotoUrl, optional =>

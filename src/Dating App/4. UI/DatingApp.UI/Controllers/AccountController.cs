@@ -51,9 +51,9 @@ namespace DatingApp.WebApi.Controllers
 
             if (!Request.Query.Keys.Contains("ReturnUrl"))
             {
-                _toastNotification.Success("Authentificated");
+                _toastNotification.Success(Notifications.Successful);
 
-                return RedirectToAction("Home", "App");
+                return RedirectToAction("GetMembers", "Members");
             }            
 
             return Redirect(Request.Query["ReturnUrl"].First());            
@@ -103,13 +103,19 @@ namespace DatingApp.WebApi.Controllers
 
             if (!Request.Query.Keys.Contains("ReturnUrl"))
             {
-                _toastNotification.Success(Notifications.SuccessfulLogin);
+                _toastNotification.Success(Notifications.Successful);
 
                 return RedirectToAction("Home", "App");
             }
 
             return Redirect(Request.Query["ReturnUrl"].First());
         }
+
+        //[HttpPut]
+        //public async Task<ActionResult> EditProfile()
+        //{
+
+        //}
 
         [HttpGet("{action}")]
         public IActionResult Cancel()

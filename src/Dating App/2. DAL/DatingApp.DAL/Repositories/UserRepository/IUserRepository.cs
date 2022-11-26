@@ -12,6 +12,8 @@ namespace DatingApp.DAL.Repositories.UserRepository
 
         Task<AppUser> AddAsync(AppUser appUser);
 
+        Task<bool> UpdateAsync(AppUser updatedUser);
+
         Task<bool> ExistsAsync(string username);
     }
 }

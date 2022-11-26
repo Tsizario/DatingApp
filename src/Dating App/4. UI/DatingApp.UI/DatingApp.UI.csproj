@@ -26,11 +26,12 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\" />
-    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="bundleconfig.json" />
+    <None Include="wwwroot\js\tab.js" />
+    <None Include="wwwroot\js\tab.min.js" />
   </ItemGroup>
 
 </Project>

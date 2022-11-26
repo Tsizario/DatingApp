@@ -15,11 +15,5 @@ namespace DatingApp.BLL.DTO
         public string City { get; set; }
 
         public string Region { get; set; }
-
-        public DateTime Created { get; set; }
-
-        public DateTime LastActive { get; set; }
-
-        public ICollection<PhotoDto> Photos { get; set; }
     }
 }

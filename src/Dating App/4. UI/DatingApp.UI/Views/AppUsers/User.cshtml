@@ -1,4 +1,4 @@
-﻿@model MemberDto
+﻿@model AppUserDto
 @{
     ViewBag.Title = Model.Username;
 }
@@ -75,7 +75,7 @@
                 {
                     foreach (var photo in Model.Photos)
                     {
-                        <vc:photo photo-dto="photo"></vc:photo>
+                        <vc:user-photo photo-dto="photo"></vc:user-photo>
                     }
                 }
             </div>

@@ -1,6 +1,6 @@
-﻿@model IEnumerable<MemberDto>
+﻿@model IEnumerable<AppUserDto>
 @{
-    ViewBag.Title = "Members";
+    ViewBag.Title = "Users";
 }
 
 <div class="row mt-4">
@@ -13,8 +13,8 @@
                     <ul class="list-inline member-icons animate">
                         <li class="list-inline-item">
                             <a class="nav-link"
-                                asp-controller="Users"
-                                asp-action="Member">
+                                asp-controller="AppUsers"
+                                asp-action="GetUser">
                                 <div class="btn btn-light">
                                     <i class="fa-solid fa-heart"></i>
                                 </div>
@@ -22,8 +22,8 @@
                         </li>
                         <li class="list-inline-item">
                             <a class="nav-link"
-                                asp-controller="Users"
-                                asp-action="Member"
+                                asp-controller="AppUsers"
+                                asp-action="GetUser"
                                 asp-route-username=@member.Username>
                                 <div class="btn btn-light">
                                     <i class="fa-solid fa-user"></i>
@@ -32,7 +32,7 @@
                         </li>
                         <li class="list-inline-item">
                             <a class="nav-link"
-                               asp-controller="Users"
+                               asp-controller="Members"
                                asp-action="Member">
                                 <div class="btn btn-light">
                                     <i class="fa-solid fa-comment"></i>
