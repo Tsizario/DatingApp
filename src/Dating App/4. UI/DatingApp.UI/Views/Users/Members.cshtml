@@ -9,37 +9,46 @@
         <div class="col-lg-2 mb-3">
             <div class="card sized-card">
                 <div class="card-img-wrapper text-center">
-                    <img class="card-img-top d-block" src="@member.PhotoUrl" alt="@member.Name" />
-                    <ul class="list-inline member-icons animate">                        
+                    <img class="card-img-top photo d-block" src="@member.PhotoUrl" alt="@member.Name" />
+                    <ul class="list-inline member-icons animate">
                         <li class="list-inline-item">
-                            <button class="btn btn-primary">
-                                <a class="nav-link" asp-controller="Users" asp-action="Members">
+                            <a class="nav-link"
+                                asp-controller="Users"
+                                asp-action="Member">
+                                <div class="btn btn-light">
                                     <i class="fa-solid fa-heart"></i>
-                                </a>
-                            </button>
+                                </div>
+                            </a>
                         </li>
                         <li class="list-inline-item">
-                            <button class="btn btn-primary">
-                                <a class="nav-link" asp-controller="Users" asp-action="Member">
+                            <a class="nav-link"
+                                asp-controller="Users"
+                                asp-action="Member"
+                                asp-route-username=@member.Username>
+                                <div class="btn btn-light">
                                     <i class="fa-solid fa-user"></i>
-                                </a>
-                            </button>
+                                </div>
+                            </a>
                         </li>
                         <li class="list-inline-item">
-                            <button class="btn btn-primary">
-                                <a class="nav-link" asp-controller="Users" asp-action="Members">
-                                    <i class="fa-solid fa-envelope"></i>
-                                </a>
-                            </button>
+                            <a class="nav-link"
+                               asp-controller="Users"
+                               asp-action="Member">
+                                <div class="btn btn-light">
+                                    <i class="fa-solid fa-comment"></i>
+                                </div>
+                            </a>
                         </li>
                     </ul>
                 </div>
-                <div class="card-body p-1 mt-3">
-                    <div class="card-title text-black mt-1">
-                        <i class="fa-solid fa-user d-inline"></i>
-                        @member.Name, @member.Age
+                <div class="ps-2">
+                    <div class="card-body p-1">
+                        <div class="card-title text-black mb-1">
+                            <i class="fa-solid fa-user d-inline"></i>
+                            @member.Name, @member.Age
+                        </div>
+                        <p class="card-text text-muted mt-1">@member.City, @member.Region</p>
                     </div>
-                    <p class="card-text text-muted ps-2 mt-2">@member.City</p>
                 </div>
             </div>
         </div>

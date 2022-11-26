@@ -1,21 +1,87 @@
 ﻿@model MemberDto
 @{
-    ViewBag.Title = Model.Name;
+    ViewBag.Title = Model.Username;
+}
+@{
+    var photoUrl = Model.PhotoUrl is not null ? Model.PhotoUrl : "~/img/user.png";
 }
 
-<div>
-    <div class="col-2">
-        <div>
-            Username: @Model.Username
+@section Head {
+    <link href="~/css/tab.min.css" rel="stylesheet" />
+    <link href="~/css/gallery.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/js/tab.min.js"></script>
+}
+
+    <div class="row">
+        <div class="col-4">
+            <div class="card mt-4">
+                <img src=@photoUrl alt=@Model.Username
+                 class="card-img-top img-thumbnail mx-auto mt-3" />
+                <div class="card-body">
+                    <div>
+                        <strong>Location:</strong>
+                        <p>@Model.City, @Model.Region</p>
+                    </div>
+                    <div>
+                        <strong>Age:</strong>
+                        <p>@Model.Age</p>
+                    </div>
+                    <div>
+                        <strong>Last active:</strong>
+                        <p>@Model.LastActive</p>
+                    </div>
+                    <div>
+                        <strong>Member since:</strong>
+                        <p class="mb-0">@Model.Created</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-danger custom">
+                            <i class="fa-solid fa-heart"></i> Like
+                        </button>
+                        <button class="btn btn-outline-success custom">
+                            <i class="fa-solid fa-comment"></i> Messages
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            Name: @Model.Name
-        </div>
-        <div>
-            Bio: @Model.Bio
-        </div>
-        <div>
-            Interest: @Model.Interests
+        <div class="col-8">
+            <div class="tab mt-4">
+                <button class="tablinks" onclick="openProperty(event, 'Name')">About @Model.Name</button>
+                <button class="tablinks" onclick="openProperty(event, 'Interests')">Interests</button>
+                <button class="tablinks" onclick="openProperty(event, 'Photos')">Photos</button>
+                <button class="tablinks" onclick="openProperty(event, 'Messages')">Messages</button>
+            </div>
+
+            <div id="Name" class="tabcontent">
+                <h3>Bio</h3>
+                <p>@Model.Bio</p>
+                <h3>Looking for</h3>
+                <p>@Model.LookingFor</p>
+            </div>
+
+            <div id="Interests" class="tabcontent">
+                <h3>Interests</h3>
+                <p>@Model.Interests</p>
+            </div>
+
+            <div id="Photos" class="tabcontent">
+                @if (Model.Photos is not null)
+                {
+                    foreach (var photo in Model.Photos)
+                    {
+                        <vc:photo photo-dto="photo"></vc:photo>
+                    }
+                }
+            </div>
+
+            <div id="Messages" class="tabcontent">
+                <p>Messages will be here soon...</p>
+            </div>
         </div>
     </div>
-</div>
