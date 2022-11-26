@@ -67,7 +67,7 @@ ul {
 }
 
 .sized-card {
-   width: 200px;
+    width: 200px;
 }
 
 .card:hover .photo {
@@ -78,6 +78,7 @@ ul {
 }
 
 .card .photo {
+    
     transform: scale(1.0, 1.0);
     transition-duration: 0.5s;
     transition-timing-function: ease-out;
@@ -86,6 +87,7 @@ ul {
 .card-img-wrapper {
     overflow: hidden;
     position: relative;
+    border-radius: 5px;
 }
 
 .member-icons {
