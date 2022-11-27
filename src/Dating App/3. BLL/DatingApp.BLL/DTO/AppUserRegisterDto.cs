@@ -9,6 +9,7 @@ namespace DatingApp.BLL.DTO
         public string Username { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
         [StringLength(15, MinimumLength = 6)]
         public string Password { get; set; }
     }

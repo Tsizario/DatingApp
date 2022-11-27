@@ -58,7 +58,7 @@ namespace DatingApp.BLL.Services.UserService
                 ? ServiceResult<AppUser>.CreateSuccess(appUser)
                 : ServiceResult<AppUser>.CreateFailure(Errors.AppUserAddingError);
         }
-        public async Task<ServiceResult<bool>> UpdateAppUserByUsername(AppUserUpdateDto updatedDto)
+        public async Task<ServiceResult<bool>> UpdateAppUser(AppUserDto updatedDto)
         {
             var updatedAppUser = _mapper.Map<AppUser>(updatedDto);
 
