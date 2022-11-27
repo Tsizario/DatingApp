@@ -22,7 +22,9 @@ namespace DatingApp.BLL.MapperProfile
 
             CreateMap<AppUser, AppUserTokenDto>();
 
-            CreateMap<Photo, PhotoDto>();
+            CreateMap<Photo, PhotoDto>().ReverseMap();
+
+            CreateMap<Photo, PhotoReadDto>();
         }
     }
 }

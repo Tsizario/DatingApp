@@ -6,11 +6,11 @@ using Microsoft.Extensions.Options;
 
 namespace DatingApp.BLL.Services.ImageService
 {
-    public class PhotoService : IPhotoService
+    public class CloudPhotoService : ICloudPhotoService
     {
         private readonly Cloudinary _cloudinary;
 
-        public PhotoService(IOptions<CloudinarySettings> configuration)
+        public CloudPhotoService(IOptions<CloudinarySettings> configuration)
         {
             var account = new Account
             (

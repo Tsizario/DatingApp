@@ -24,6 +24,7 @@ namespace DatingApp.BLL.Services.UserService
         public async Task<ServiceResult<IEnumerable<AppUserDto>>> GetAllAppUsers()
         {
             var appUsers = await _userRepository.GetAllUsersAsync();
+
             var appUserDtos = _mapper.Map<IEnumerable<AppUserDto>>(appUsers);
 
             return appUserDtos is not null
