@@ -1,4 +1,5 @@
 ﻿using DatingApp.DAL.ApplicationSeed;
+using DatingApp.DAL.Repositories.PhotoRepository;
 using DatingApp.DAL.Repositories.UserRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ namespace DatingApp.DAL.Extensions
             services.AddScoped<AppUserSeed>();
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPhotoRepository, PhotoRepository>();
 
             return services;
         }
