@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BLL.Helpers;
 using DatingApp.BLL.DTO;
+using DatingApp.BLL.DTO.AppUser;
 using DatingApp.DAL.Repositories.UserRepository;
 using DatingApp.Domain.Constants;
 using DatingApp.Domain.Entities;

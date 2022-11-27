@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using DatingApp.BLL.DTO;
+using DatingApp.BLL.DTO.AppUser;
+using DatingApp.BLL.DTO.Photo;
 using DatingApp.BLL.Extensions;
 using DatingApp.Domain.Entities;
 
@@ -21,6 +22,8 @@ namespace DatingApp.BLL.MapperProfile
             CreateMap<AppUser, AppUserLoginDto>();
 
             CreateMap<AppUser, AppUserTokenDto>();
+
+            CreateMap<AppUser, AppUserUpdateDto>();
 
             CreateMap<Photo, PhotoDto>().ReverseMap();
 

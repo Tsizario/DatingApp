@@ -1,6 +1,5 @@
 ﻿using DatingApp.BLL.MapperProfile;
-using DatingApp.BLL.Services.CloudinaryService;
-using DatingApp.BLL.Services.ImageService;
+using DatingApp.BLL.Services.CloudPhotoService;
 using DatingApp.BLL.Services.PhotoService;
 using DatingApp.BLL.Services.TokenService;
 using DatingApp.BLL.Services.UserService;

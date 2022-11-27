@@ -1,4 +1,4 @@
-﻿namespace DatingApp.BLL.Services.CloudinaryService
+﻿namespace DatingApp.BLL.Services.CloudPhotoService
 {
     public class CloudinarySettings
     {

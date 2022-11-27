@@ -1,10 +1,9 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using DatingApp.BLL.Services.CloudinaryService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
-namespace DatingApp.BLL.Services.ImageService
+namespace DatingApp.BLL.Services.CloudPhotoService
 {
     public class CloudPhotoService : ICloudPhotoService
     {
@@ -21,6 +20,7 @@ namespace DatingApp.BLL.Services.ImageService
 
             _cloudinary = new Cloudinary(account);
         }
+
         public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
         {
             var uploadResult = new ImageUploadResult();

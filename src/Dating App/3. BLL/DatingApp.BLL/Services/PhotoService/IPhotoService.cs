@@ -1,5 +1,6 @@
 ﻿using BLL.Helpers;
 using DatingApp.BLL.DTO;
+using DatingApp.BLL.DTO.Photo;
 using DatingApp.Domain.Entities;
 
 namespace DatingApp.BLL.Services.PhotoService

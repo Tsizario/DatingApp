@@ -1,5 +1,5 @@
 ﻿using BLL.Helpers;
-using DatingApp.BLL.DTO;
+using DatingApp.BLL.DTO.AppUser;
 using DatingApp.Domain.Entities;
 
 namespace DatingApp.BLL.Services.UserService

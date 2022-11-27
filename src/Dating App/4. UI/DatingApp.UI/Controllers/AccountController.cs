@@ -1,5 +1,5 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
-using DatingApp.BLL.DTO;
+using DatingApp.BLL.DTO.AppUser;
 using DatingApp.BLL.Services.TokenService;
 using DatingApp.BLL.Services.UserService;
 using DatingApp.Domain.Constants;

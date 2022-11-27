@@ -1,4 +1,5 @@
-﻿using DatingApp.Domain.Entities.Enums;
+﻿using DatingApp.BLL.DTO.Photo;
+using DatingApp.Domain.Entities.Enums;
 
 namespace DatingApp.BLL.DTO.AppUser
 {
