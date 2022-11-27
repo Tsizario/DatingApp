@@ -9,5 +9,8 @@
         public const string AppUserPasswordInvalid = "The password is invalid";
         public const string AppUserUsernameInvalid = "The username is invalid";
         public const string AppUserIncorrectCredentials = "Incorrect login or password";
+
+        public const string PhotoAddingError = "Error while adding photo";
+        public const string PhotoDoesNotExists = "The photo does not exists";
     }
 }
