@@ -1,4 +1,5 @@
-﻿using DatingApp.Domain.Entities;
+﻿using AutoMapper;
+using DatingApp.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.DAL.Repositories.UserRepository
@@ -6,10 +7,13 @@ namespace DatingApp.DAL.Repositories.UserRepository
     internal class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public UserRepository(ApplicationDbContext dbContext)
+        public UserRepository(ApplicationDbContext dbContext,
+            IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public async Task<AppUser> GetByIdAsync(int userId)
@@ -49,7 +53,8 @@ namespace DatingApp.DAL.Repositories.UserRepository
             {
                 return false;
             }
-           
+
+            _mapper.Map(updatedUser, user);           
             _dbContext.Entry(user).State = EntityState.Modified;
 
             await _dbContext.SaveChangesAsync();
