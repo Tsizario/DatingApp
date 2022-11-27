@@ -1,6 +1,6 @@
-﻿namespace DatingApp.BLL.DTO
+﻿namespace DatingApp.BLL.DTO.Photo
 {
-    public class PhotoDto
+    public class PhotoReadDto
     {
         public int Id { get; set; }
 

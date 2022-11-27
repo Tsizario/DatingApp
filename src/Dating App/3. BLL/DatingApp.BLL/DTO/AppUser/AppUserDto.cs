@@ -1,9 +1,11 @@
 ﻿using DatingApp.Domain.Entities.Enums;
 
-namespace DatingApp.BLL.DTO
+namespace DatingApp.BLL.DTO.AppUser
 {
     public class AppUserDto
     {
+        public int Id { get; set; }
+
         public string Username { get; set; }
 
         public string Name { get; set; }
@@ -26,6 +28,6 @@ namespace DatingApp.BLL.DTO
 
         public DateTime LastActive { get; set; }
 
-        public ICollection<PhotoDto> Photos { get; set; }
+        public ICollection<PhotoReadDto> Photos { get; set; }
     }
 }

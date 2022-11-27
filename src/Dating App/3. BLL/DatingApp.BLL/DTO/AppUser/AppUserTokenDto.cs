@@ -1,4 +1,4 @@
-﻿namespace DatingApp.BLL.DTO
+﻿namespace DatingApp.BLL.DTO.AppUser
 {
     public class AppUserTokenDto
     {
