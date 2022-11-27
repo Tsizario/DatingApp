@@ -33,7 +33,7 @@ namespace DatingApp.BLL.Services.CloudPhotoService
                 {
                     File = new FileDescription(file.FileName, stream),
                     Transformation = new Transformation()
-                        .Height(300).Width(300)
+                        .Height(800).Width(800)
                             .Crop("fill").Gravity("face"),
                     Folder = "dating-app"
                 };
