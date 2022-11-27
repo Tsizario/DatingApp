@@ -53,7 +53,7 @@ namespace DatingApp.WebApi.Controllers
             {
                 _toastNotification.Success(Notifications.Successful);
 
-                return RedirectToAction("GetMembers", "Members");
+                return RedirectToAction("GetUsers", "AppUsers");
             }            
 
             return Redirect(Request.Query["ReturnUrl"].First());            

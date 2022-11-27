@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.WebApi.Controllers
 {
+    [Route("users")]
     public class AppUsersController : Controller
     {
         private readonly IUserService _userService;
@@ -32,7 +33,7 @@ namespace DatingApp.WebApi.Controllers
             _photoService = photoService;
         }
 
-        [HttpGet("users")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUserDto>>> GetUsers()
         {
             var users = await _userService.GetAllAppUsers();
@@ -47,7 +48,7 @@ namespace DatingApp.WebApi.Controllers
             return View("Users", users.Value);
         }
 
-        [HttpGet("users/{username}")]
+        [HttpGet("{username}")]
         public async Task<ActionResult<AppUserDto>> GetUser(string username)
         {
             var user = await _userService.GetAppUserByUsername(username);
