@@ -1,5 +1,5 @@
 ﻿using DatingApp.BLL.DTO.Photo;
-using DatingApp.Domain.Entities.Enums;
+using DatingApp.BLL.Extensions;
 
 namespace DatingApp.BLL.DTO.AppUser
 {
@@ -29,6 +29,8 @@ namespace DatingApp.BLL.DTO.AppUser
 
         public DateTime LastActive { get; set; }
 
-        public ICollection<PhotoReadDto> Photos { get; set; }
+        public DateTime DateOfBirth { get; set; }
+
+        public ICollection<PhotoDto> Photos { get; set; }
     }
 }

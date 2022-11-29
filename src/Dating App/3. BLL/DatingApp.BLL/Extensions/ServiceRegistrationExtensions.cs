@@ -1,4 +1,5 @@
-﻿using DatingApp.BLL.MapperProfile;
+﻿using AutoMapper;
+using DatingApp.BLL.MapperProfile;
 using DatingApp.BLL.Services.CloudPhotoService;
 using DatingApp.BLL.Services.PhotoService;
 using DatingApp.BLL.Services.TokenService;
@@ -17,7 +18,13 @@ namespace Bll.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IPhotoService, PhotoService>();
 
-            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            var mapperConfig = new MapperConfiguration(m =>
+            {
+                m.AddProfile<AppUserProfile>();
+                m.AddProfile<PhotoProfile>();
+            });
+
+            services.AddSingleton(s => mapperConfig.CreateMapper());
 
             services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
             services.AddScoped<ICloudPhotoService, CloudPhotoService>();            

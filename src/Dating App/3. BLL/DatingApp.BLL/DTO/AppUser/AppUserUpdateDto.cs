@@ -2,6 +2,8 @@
 {
     public class AppUserUpdateDto
     {
+        public string UserName { get; set; }
+
         public string Bio { get; set; }
 
         public string LookingFor { get; set; }

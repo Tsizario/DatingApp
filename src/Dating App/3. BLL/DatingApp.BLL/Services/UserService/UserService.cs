@@ -62,9 +62,11 @@ namespace DatingApp.BLL.Services.UserService
         }
         public async Task<ServiceResult<bool>> UpdateAppUser(AppUserDto updatedDto)
         {
-            var updatedAppUser = _mapper.Map<AppUser>(updatedDto);
+            var appUser = await _userRepository.GetByUsernameAsync(updatedDto.Username);
 
-            var isUpdatedUser = await _userRepository.UpdateAsync(updatedAppUser);
+            appUser = _mapper.Map(updatedDto, appUser);
+
+            var isUpdatedUser = await _userRepository.UpdateAsync(appUser);
 
             return isUpdatedUser
                 ? ServiceResult<bool>.CreateSuccess(isUpdatedUser)
