@@ -9,7 +9,16 @@
         <div class="col-lg-2 mb-3">
             <div class="card sized-card">
                 <div class="card-img-wrapper text-center">
-                    <img class="card-img-top photo d-block" src="@member.PhotoUrl" alt="@member.Name" />
+                    @if (member.Photos.Count != 0)
+                    {
+                        <img src=@member.PhotoUrl
+                            class="card-img-top photo d-block" alt="@member.Name" />
+                    }
+                    else
+                    {
+                        <img src="~/img/user.png"
+                            class="card-img-top photo d-block" alt="@member.Name" />
+                    }
                     <ul class="list-inline member-icons animate">
                         <li class="list-inline-item">
                             <a class="nav-link"

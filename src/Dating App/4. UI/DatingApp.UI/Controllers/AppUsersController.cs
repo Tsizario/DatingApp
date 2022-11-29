@@ -64,8 +64,7 @@ namespace DatingApp.WebApi.Controllers
         }
 
         [HttpGet("{username}/edit")]
-        //need to be fixed
-        public async Task<ActionResult> UpdateUser(string username)
+        public async Task<ActionResult> Edit(string username)
         {
             var user = await _userService.GetAppUserByUsername(username);
 
@@ -76,11 +75,11 @@ namespace DatingApp.WebApi.Controllers
                 return RedirectToAction("GetUsers");
             }
 
-            return View("Edit", user.Value);
+            return View(user.Value);
         }
 
         [HttpPost("{username}/edit")]
-        public async Task<ActionResult> UpdateUser([FromBody] AppUserDto updateUser)
+        public async Task<ActionResult> Edit(AppUserDto updateUser)
         {
             var user = await _userService.UpdateAppUser(updateUser);
 
@@ -93,7 +92,7 @@ namespace DatingApp.WebApi.Controllers
 
             _toastNotification.Success(Notifications.AppUserProfileUpdated);
 
-            return View("Edit", user.Value);
+            return View(updateUser);
         }
 
         [HttpPost("add-photo")]
@@ -135,6 +134,8 @@ namespace DatingApp.WebApi.Controllers
 
                 return RedirectToAction("Edit", user.Value);
             }
+
+            _toastNotification.Success(Notifications.Successful);
 
             return View("Edit", user.Value);
         }

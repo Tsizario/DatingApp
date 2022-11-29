@@ -10,7 +10,7 @@ namespace DatingApp.UI.Components
         {
         }
 
-        public IViewComponentResult Invoke(PhotoReadDto photoDto)
+        public IViewComponentResult Invoke(PhotoDto photoDto)
         {
             return View(photoDto);
         }

@@ -3,7 +3,11 @@
     ViewBag.Title = Model.Username;
 }
 @{
-    var photoUrl = Model.PhotoUrl is not null ? Model.PhotoUrl : "~/img/user.png";
+    //var photoUrl = Model.PhotoUrl is not null ? Model.PhotoUrl : "~/img/user.png";
+    var photoUrl = Model.PhotoUrl;
+
+    if (Model.Photos.Count == 0)
+        photoUrl = "~/img/user.png";
 }
 
 @section Head {
@@ -18,8 +22,16 @@
     <div class="row">
         <div class="col-4">
             <div class="card mt-4">
-                <img src=@photoUrl alt=@Model.Username
-                 class="card-img-top img-thumbnail mx-auto mt-3" />
+                @if (Model.PhotoUrl is not null)
+                {
+                    <img src=@Model.PhotoUrl
+                     class="card-img-top img-thumbnail mx-auto mt-3" />
+                }
+                else
+                {
+                    <img src="~/img/user.png"
+                     class="card-img-top img-thumbnail mx-auto mt-3" />
+                }
                 <div class="card-body">
                     <div>
                         <strong>Location:</strong>
