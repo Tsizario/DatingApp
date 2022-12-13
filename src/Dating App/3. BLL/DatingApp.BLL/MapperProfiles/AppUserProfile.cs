@@ -28,10 +28,6 @@ namespace DatingApp.BLL.MapperProfile
             CreateMap<AppUser, AppUserLoginDto>();
 
             CreateMap<AppUser, AppUserTokenDto>();
-
-            CreateMap<AppUserDto, AppUserUpdateDto>();
-
-            CreateMap<AppUserUpdateDto, AppUser>();
         }
 
         private void AddOrUpdate(AppUserDto dto, AppUser user)
