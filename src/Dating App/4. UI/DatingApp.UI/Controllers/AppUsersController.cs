@@ -96,9 +96,9 @@ namespace DatingApp.WebApi.Controllers
         }
 
         [HttpPost("add-photo")]
-        public async Task<ActionResult<PhotoReadDto>> AddPhoto(IFormFile file)
+        public async Task<ActionResult<PhotoReadDto>> AddPhoto(IFormFile file, string username)
         {
-            var user = await _userService.GetAppUserByUsername(User.GetUserName());
+            var user = await _userService.GetAppUserByUsername(username);
 
             if (!user.Success)
             {

@@ -10,5 +10,11 @@
     "inputFiles": [
       "wwwroot/css/gallery.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/edit.min.css",
+    "inputFiles": [
+      "wwwroot/css/edit.css"
+    ]
   }
 ]

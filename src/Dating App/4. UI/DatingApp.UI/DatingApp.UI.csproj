@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <None Include="bundleconfig.json" />
+    <None Include="Views\Shared\Components\PhotoEditor\Default.cshtml" />
     <None Include="wwwroot\js\tab.js" />
     <None Include="wwwroot\js\tab.min.js" />
   </ItemGroup>

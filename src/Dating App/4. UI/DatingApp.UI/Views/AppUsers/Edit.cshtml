@@ -11,6 +11,7 @@
 @section Head {
     <link href="~/css/tab.min.css" rel="stylesheet" />
     <link href="~/css/gallery.css" rel="stylesheet" />
+    <link href="~/css/edit.min.css" rel="stylesheet" />
 }
 
 @section Scripts {
@@ -29,15 +30,15 @@
 
         <div class="col-4">
             <div class="card mt-1">
-                @if (Model.PhotoUrl is not null)
+                @if (Model.Photos.Count != 0)
                 {
                     <img src=@Model.PhotoUrl
-                     class="card-img-top img-thumbnail mx-auto mt-3" />
+                        class="card-img-top img-thumbnail mx-auto mt-3" alt="@Model.Name" />
                 }
                 else
                 {
-                    <img src="~/img/user.png"
-                     class="card-img-top img-thumbnail mx-auto mt-3" />
+                    <img src="~/img/user.jpg"
+                        class="card-img-top img-thumbnail mx-auto mt-3" alt="@Model.Name" />
                 }
                 <div class="card-body">
                     <div>
@@ -77,7 +78,7 @@
         <div class="col-8">
             <div class="tab mt-1">
                 <button class="tablinks" onclick="openProperty(event, 'Name')">About @Model.Name</button>
-                <button class="tablinks" onclick="openProperty(event, 'Photos')">Edit photos</button>
+                <button class="tablinks" onclick="openProperty(event, 'Edit photos')">Edit photos</button>
             </div>
             <div id="Name" class="tabcontent">
                 <form method="post" id="editForm">
@@ -89,7 +90,6 @@
                     <input type="hidden" asp-for="Created" name="Created" />
                     <input type="hidden" asp-for="LastActive" name="LastActive" />
                     <input type="hidden" asp-for="DateOfBirth" name="DateOfBirth" />
-                    <input type="hidden" asp-for="@Model.Photos" name="Photos" />
                     <div>
                         <h4 class="mt-2">Bio</h4>
                         <textarea class="form-control"
@@ -116,8 +116,11 @@
                     </div>
                 </form>
             </div>
-            <div id="Edit photos" class="tabcontent">
-                <p>Photo edit will go here...</p>
+            <div id="Edit photos" class="tabcontent"> 
+                @if (Model.Photos is not null)
+                {
+                    <vc:photo-editor user-dto=@Model></vc:photo-editor>
+                }              
             </div>
         </div>
     </div>   

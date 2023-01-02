@@ -66,10 +66,6 @@ ul {
     }
 }
 
-.sized-card {
-    width: 200px;
-}
-
 .card:hover .photo {
     transform: scale(1.2, 1.2);
     transition-duration: 0.5s;
