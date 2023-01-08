@@ -32,7 +32,6 @@ namespace DatingApp.BLL.DTO.AppUser
 
         public DateTime DateOfBirth { get; set; }
 
-        [NotMapped]
         public ICollection<PhotoDto> Photos { get; set; }
     }
 }
