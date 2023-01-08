@@ -5,9 +5,11 @@
     {
         <div class="col-4">
             <div class="card p-1">
-                <div class="edit-image-container p-2">                    
-                    <img src=@photo.Url alt="The photo of @Model.Name"
-                        class="img-thumbnail" />                   
+                <div class="gallery-image-container p-2">
+                    <a href=@photo.Url target="_blank" data-title="User's photo">
+                        <img src=@photo.Url alt="The photo of @Model.Name"
+                         class="img-thumbnail photo" />
+                    </a>
                 </div>
                 <div class="card-body p-1 mb-1 mx-auto">
                     <button class="btn btn-outline-success">Main</button>
