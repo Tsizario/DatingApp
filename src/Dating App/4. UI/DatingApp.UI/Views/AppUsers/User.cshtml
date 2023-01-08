@@ -22,16 +22,18 @@
     <div class="row">
         <div class="col-4">
             <div class="card mt-4">
-                @if (Model.Photos.Count != 0)
-                {
-                    <img src=@Model.PhotoUrl
-                        class="card-img-top img-thumbnail mx-auto mt-3" alt="@Model.Name" />
-                }
-                else
-                {
-                    <img src="~/img/user.jpg"
-                        class="card-img-top img-thumbnail mx-auto mt-3" alt="@Model.Name" />
-                }                                     
+                <div class="card-img-wrapper p-3">
+                    @if (Model.Photos.Count != 0)
+                    {
+                        <img src=@Model.PhotoUrl
+                         class="card-img-top img-thumbnail" alt="@Model.Name" />
+                    }
+                    else
+                    {
+                        <img src="~/img/user.jpg"
+                         class="card-img-top img-thumbnail" alt="@Model.Name" />
+                    }
+                </div>                                                  
                 <div class="card-body">
                     <div>
                         <strong>Location:</strong>
@@ -85,10 +87,12 @@
             <div id="Photos" class="tabcontent">
                 @if (Model.Photos is not null)
                 {
-                    foreach (var photo in Model.Photos)
-                    {
-                        <vc:user-photo photo-dto="photo"></vc:user-photo>
-                    }
+                    <div class="row">
+                        @foreach (var photo in Model.Photos)
+                        {
+                            <vc:user-photo photo-dto="photo"></vc:user-photo>
+                        }
+                    </div>
                 }
             </div>
 

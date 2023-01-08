@@ -2,18 +2,13 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 250px;
-    width: 250px;
 }
 
 .gallery-image-container {
-    padding: 8px;
     background: #fff;
-    border-radius: 2px;
     display: inline-block;
-    height: 265px;
-    width: 265px;
-    margin: 12px;
+    height: !important 100%;
+    width: !important 100%;
     position: relative;
 }
 
