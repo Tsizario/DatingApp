@@ -6,7 +6,6 @@ using DatingApp.BLL.Services.PhotoService;
 using DatingApp.BLL.Services.TokenService;
 using DatingApp.BLL.Services.UserService;
 using DatingApp.Domain.Constants;
-using DatingApp.UI.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.WebApi.Controllers
