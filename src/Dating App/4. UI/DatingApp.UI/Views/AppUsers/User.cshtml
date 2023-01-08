@@ -86,13 +86,8 @@
 
             <div id="Photos" class="tabcontent">
                 @if (Model.Photos is not null)
-                {
-                    <div class="row">
-                        @foreach (var photo in Model.Photos)
-                        {
-                            <vc:user-photo photo-dto="photo"></vc:user-photo>
-                        }
-                    </div>
+                {   
+                    <vc:user-photo user-dto=@Model></vc:user-photo>
                 }
             </div>
 

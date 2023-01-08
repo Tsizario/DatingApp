@@ -1,5 +1,4 @@
-﻿using DatingApp.BLL.DTO;
-using DatingApp.BLL.DTO.Photo;
+﻿using DatingApp.BLL.DTO.AppUser;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DatingApp.UI.Components
@@ -10,9 +9,9 @@ namespace DatingApp.UI.Components
         {
         }
 
-        public IViewComponentResult Invoke(PhotoDto photoDto)
+        public IViewComponentResult Invoke(AppUserDto userDto)
         {
-            return View(photoDto);
+            return View(userDto);
         }
     }
 }
