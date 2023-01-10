@@ -72,17 +72,17 @@ namespace DatingApp.BLL.Services.UserService
                 : ServiceResult<AppUser>.CreateFailure(Errors.AppUserAddingError);
         }
 
-        public async Task<ServiceResult<bool>> UpdateAppUser(AppUserDto updatedDto)
+        public async Task<ServiceResult<AppUserDto>> UpdateAppUser(AppUserDto userForUpdate)
         {
-            var appUser = await _userRepository.GetByUsernameAsync(updatedDto.Username);
+            var user = _mapper.Map<AppUser>(userForUpdate);    
 
-            appUser = _mapper.Map(updatedDto, appUser);
+            var updatedUser = await _userRepository.UpdateAsync(user);
 
-            var isUpdatedUser = await _userRepository.UpdateAsync(appUser);
+            var updatedDto = _mapper.Map<AppUserDto>(updatedUser);
 
-            return isUpdatedUser
-                ? ServiceResult<bool>.CreateSuccess(isUpdatedUser)
-                : ServiceResult<bool>.CreateFailure(Errors.AppUserNotFound);
+            return updatedUser is not null
+                ? ServiceResult<AppUserDto>.CreateSuccess(updatedDto)
+                : ServiceResult<AppUserDto>.CreateFailure(Errors.AppUserNotFound);
         }
 
         public async Task<ServiceResult<AppUser>> LoginAppUser(AppUserLoginDto loginDto)

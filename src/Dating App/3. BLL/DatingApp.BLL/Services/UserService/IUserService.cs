@@ -14,7 +14,7 @@ namespace DatingApp.BLL.Services.UserService
 
         Task<ServiceResult<AppUser>> AddAppUser(AppUserRegisterDto appUserDto);
 
-        Task<ServiceResult<bool>> UpdateAppUser(AppUserDto updatedDto);
+        Task<ServiceResult<AppUserDto>> UpdateAppUser(AppUserDto updatedDto);
 
         Task<ServiceResult<AppUser>> LoginAppUser(AppUserLoginDto loginDto);
 

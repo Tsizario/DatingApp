@@ -45,13 +45,13 @@ namespace DatingApp.DAL.Repositories.UserRepository
             return appUser;
         }
 
-        public async Task<bool> UpdateAsync(AppUser updatedUser)
+        public async Task<AppUser> UpdateAsync(AppUser updatedUser)
         {
             var user = await GetByIdAsync(updatedUser.Id);
 
             if (user == null)
             {
-                return false;
+                return null;
             }
 
             _mapper.Map(updatedUser, user);           
@@ -59,7 +59,7 @@ namespace DatingApp.DAL.Repositories.UserRepository
 
             await _dbContext.SaveChangesAsync();
 
-            return true;
+            return user;
         }
 
         public async Task<bool> ExistsAsync(string username)
