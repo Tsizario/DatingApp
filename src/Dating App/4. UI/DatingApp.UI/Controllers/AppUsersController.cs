@@ -93,7 +93,7 @@ namespace DatingApp.WebApi.Controllers
 
             _toastNotification.Success(Notifications.AppUserProfileUpdated);
 
-            return View(returnedUser.Value);
+            return View(returnedUser.Value) ;
         }        
 
         [HttpPost("add-photo")]

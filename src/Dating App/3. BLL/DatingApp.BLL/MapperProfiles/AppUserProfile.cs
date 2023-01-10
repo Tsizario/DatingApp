@@ -21,11 +21,15 @@ namespace DatingApp.BLL.MapperProfile
             CreateMap<AppUserDto, AppUser>()
                 .ForMember(destination => destination.Photos, optional =>
                     optional.Ignore())
-                        .AfterMap((appUserDto, appUser) => AddOrUpdate(appUserDto, appUser));
+                        .AfterMap((appUserDto, appUser) => AddOrUpdate(appUserDto, appUser))
+                .ForAllMembers(opts => opts.Condition((source, destination, sourceMember) => 
+                        sourceMember != null));
 
             CreateMap<AppUser, AppUserRegisterDto>().ReverseMap();
 
             CreateMap<AppUser, AppUserLoginDto>();
+
+            CreateMap<AppUserUpdateDto, AppUser>();
 
             CreateMap<AppUser, AppUserTokenDto>();
         }
