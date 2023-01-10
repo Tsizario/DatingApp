@@ -89,11 +89,9 @@ namespace DatingApp.WebApi.Controllers
                 return RedirectToAction("Edit", user.Value);
             }
 
-            var returnedUser = await _userService.GetAppUserByUsername(updateUser.Username);
-
             _toastNotification.Success(Notifications.AppUserProfileUpdated);
 
-            return View(returnedUser.Value) ;
+            return View(user.Value);
         }        
 
         [HttpPost("add-photo")]

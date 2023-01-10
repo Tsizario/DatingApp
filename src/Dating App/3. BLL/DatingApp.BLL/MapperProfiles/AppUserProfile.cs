@@ -16,7 +16,9 @@ namespace DatingApp.BLL.MapperProfile
                     optional.MapFrom(source => source.DateOfBirth.CalculateAge()))
                 .ForMember(destination => destination.PhotoUrl, optional =>
                     optional.MapFrom(source => source.Photos
-                        .SingleOrDefault(x => x.IsMain)!.Url)).ReverseMap();
+                        .SingleOrDefault(x => x.IsMain)!.Url))
+                .ForMember(destination => destination.Photos, optional =>
+                    optional.MapFrom(source => source.Photos));                       
 
             CreateMap<AppUserDto, AppUser>()
                 .ForMember(destination => destination.Photos, optional =>
@@ -47,6 +49,6 @@ namespace DatingApp.BLL.MapperProfile
                     _mapper.Map(photoDto, user.Photos.SingleOrDefault(c => c.Id == photoDto.Id));
                 }
             }
-        }
+        }       
     }
 }
