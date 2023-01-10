@@ -33,6 +33,17 @@ namespace DatingApp.BLL.Services.UserService
                 : ServiceResult<IEnumerable<AppUserDto>>.CreateFailure(Errors.AppUsersNotFound);
         }
 
+        public async Task<ServiceResult<AppUserDto>> GetAppUserById(int id)
+        {
+            var appUser = await _userRepository.GetByIdAsync(id);
+
+            var appUserDto = _mapper.Map<AppUserDto>(appUser);
+
+            return appUserDto is not null
+                ? ServiceResult<AppUserDto>.CreateSuccess(appUserDto)
+                : ServiceResult<AppUserDto>.CreateFailure(Errors.AppUserNotFound);
+        }
+
         public async Task<ServiceResult<AppUserDto>> GetAppUserByUsername(string username)
         {
             var appUser = await _userRepository.GetByUsernameAsync(username);
@@ -60,6 +71,7 @@ namespace DatingApp.BLL.Services.UserService
                 ? ServiceResult<AppUser>.CreateSuccess(appUser)
                 : ServiceResult<AppUser>.CreateFailure(Errors.AppUserAddingError);
         }
+
         public async Task<ServiceResult<bool>> UpdateAppUser(AppUserDto updatedDto)
         {
             var appUser = await _userRepository.GetByUsernameAsync(updatedDto.Username);
@@ -72,6 +84,7 @@ namespace DatingApp.BLL.Services.UserService
                 ? ServiceResult<bool>.CreateSuccess(isUpdatedUser)
                 : ServiceResult<bool>.CreateFailure(Errors.AppUserNotFound);
         }
+
         public async Task<ServiceResult<AppUser>> LoginAppUser(AppUserLoginDto loginDto)
         {
             var appUser = await _userRepository.GetByUsernameAsync(loginDto.Username);

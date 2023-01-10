@@ -91,8 +91,8 @@ namespace DatingApp.WebApi.Controllers
 
             _toastNotification.Success(Notifications.AppUserProfileUpdated);
 
-            return View(updateUser);
-        }
+            return View(user.Value);
+        }        
 
         [HttpPost("add-photo")]
         public async Task<ActionResult<PhotoReadDto>> AddPhoto(IFormFile file, string username)
