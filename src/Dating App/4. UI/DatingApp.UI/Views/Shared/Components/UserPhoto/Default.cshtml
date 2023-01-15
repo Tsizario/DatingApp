@@ -1,0 +1,18 @@
+﻿@model AppUserDto
+
+<div class="row">
+    @foreach (var photo in Model.Photos)
+    {
+        <div class="col-4">
+            <div class="card">
+                <div class="card-img-wrapper mx-auto">
+                    <div class="gallery-image-container">
+                        <a href=@photo.Url target="_blank" data-title="User's photo">
+                            <img src=@photo.Url alt="The photo of @Model.Name" class="img-thumbnail photo" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

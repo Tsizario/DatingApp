@@ -8,9 +8,9 @@ namespace DatingApp.DAL.ApplicationSeed
 {
     public class AppUserSeed
     {
-        private readonly AppContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public AppUserSeed(AppContext context)
+        public AppUserSeed(ApplicationDbContext context)
         {
             _context = context;
         }

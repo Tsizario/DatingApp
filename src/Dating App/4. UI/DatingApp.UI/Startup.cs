@@ -3,6 +3,10 @@ using AspNetCoreHero.ToastNotification.Extensions;
 using Bll.Extensions;
 using DatingApp.BLL.Extensions;
 using DatingApp.DAL.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace DatingApp.UI
 {
@@ -28,6 +32,15 @@ namespace DatingApp.UI
                 config.Position = NotyfPosition.BottomRight;
             });
 
+            //services.AddDefaultIdentity<IdentityUser>(
+            //    options => options.SignIn.RequireConfirmedAccout = true)
+            //    .AddRoles<IdentityRole>()
+            //    .AddEnityFrameworkStores<ApplicationDbContext>();
+
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,
+            //        options => _configuration.Bind("JwtSettings", options));
+
             services.AddCors();
 
             services.AddMvc();
@@ -50,10 +63,9 @@ namespace DatingApp.UI
 
             app.UseNotyf();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();     // нет определенных маршрутов
-            });
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
         }
     }
 }

@@ -1,0 +1,102 @@
+﻿@model AppUserDto
+@{
+    ViewBag.Title = Model.Username;
+}
+@{
+    //var photoUrl = Model.PhotoUrl is not null ? Model.PhotoUrl : "~/img/user.png";
+    var photoUrl = Model.PhotoUrl;
+
+    if (Model.Photos.Count == 0)
+        photoUrl = "~/img/user.png";
+}
+
+@section Head {
+    <link href="~/css/tab.min.css" rel="stylesheet" />
+    <link href="~/css/gallery.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/js/tab.min.js"></script>
+}
+
+    <div class="row">
+        <div class="col-4">
+            <div class="card mt-4">
+                <div class="card-img-wrapper p-3">
+                    @if (Model.Photos.Count != 0)
+                    {
+                        <img src=@Model.PhotoUrl
+                         class="card-img-top img-thumbnail" alt="@Model.Name" />
+                    }
+                    else
+                    {
+                        <img src="~/img/user.jpg"
+                         class="card-img-top img-thumbnail" alt="@Model.Name" />
+                    }
+                </div>
+            <div class="card-body">
+                    <div>
+                        <strong>Name:</strong>
+                        <p>@Model.Name</p>
+                    </div>
+                    <div>
+                        <strong>Location:</strong>
+                        <p>@Model.City, @Model.Region</p>
+                    </div>
+                    <div>
+                        <strong>Age:</strong>
+                        <p>@Model.Age</p>
+                    </div>
+                    <div>
+                        <strong>Last active:</strong>
+                        <p>@Model.LastActive</p>
+                    </div>
+                    <div>
+                        <strong>Member since:</strong>
+                        <p class="mb-0">@Model.Created</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-danger custom">
+                            <i class="fa-solid fa-heart"></i> Like
+                        </button>
+                        <button class="btn btn-outline-success custom">
+                            <i class="fa-solid fa-comment"></i> Messages
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="tab mt-4">
+                <button class="tablinks" onclick="openProperty(event, 'Name')">About @Model.Name</button>
+                <button class="tablinks" onclick="openProperty(event, 'Interests')">Interests</button>
+                <button class="tablinks" onclick="openProperty(event, 'Photos')">Photos</button>
+                <button class="tablinks" onclick="openProperty(event, 'Messages')">Messages</button>
+            </div>
+
+            <div id="Name" class="tabcontent">
+                <h3>Bio</h3>
+                <p>@Model.Bio</p>
+                <h3>Looking for</h3>
+                <p>@Model.LookingFor</p>
+            </div>
+
+            <div id="Interests" class="tabcontent">
+                <h3>Interests</h3>
+                <p>@Model.Interests</p>
+            </div>
+
+            <div id="Photos" class="tabcontent">
+                @if (Model.Photos is not null)
+                {   
+                    <vc:user-photo user-dto=@Model></vc:user-photo>
+                }
+            </div>
+
+            <div id="Messages" class="tabcontent">
+                <p>Messages will be here soon...</p>
+            </div>
+        </div>
+    </div>

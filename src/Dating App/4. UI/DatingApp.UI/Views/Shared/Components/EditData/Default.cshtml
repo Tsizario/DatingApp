@@ -1,0 +1,37 @@
+﻿@model AppUserDto 
+
+<form method="post" id="editForm">
+    <input type="hidden" asp-for="Id" name="Id" />
+    <input type="hidden" asp-for="Username" name="Username" />
+    <input type="hidden" asp-for="Name" name="Name" />
+    <input type="hidden" asp-for="PhotoUrl" name="PhotoUrl" />
+    <input type="hidden" asp-for="Age" name="Age" />
+    <input type="hidden" asp-for="Created" name="Created" />
+    <input type="hidden" asp-for="LastActive" name="LastActive" />
+    <input type="hidden" asp-for="DateOfBirth" name="DateOfBirth" />
+    <input type="hidden" asp-for="Photos" name="Photos" />
+    <div>
+        <h4 class="mt-2">Bio</h4>
+        <textarea class="form-control"
+                  asp-for="Bio"
+                  name="bio"
+                  rows="6"></textarea>
+        <h4 class="mt-2">Looking for</h4>
+        <textarea class="form-control"
+                  asp-for="LookingFor"
+                  name="lookingFor"
+                  rows="6"></textarea>
+        <h4 class="mt-2">Interests</h4>
+        <textarea class="form-control"
+                  asp-for="Interests"
+                  name="interests"
+                  rows="3"></textarea>
+        <h4 class="mt-2">Location Details: </h4>
+        <div class="d-flex flex-row align-items-center">
+            <label asp-for="City">City: </label>
+            <input asp-for="City" type="text" name="city" class="form-control mx-2" />
+            <label asp-for="Region">Region: </label>
+            <input asp-for="Region" type="text" name="region" class="form-control mx-2" />
+        </div>
+    </div>
+</form>

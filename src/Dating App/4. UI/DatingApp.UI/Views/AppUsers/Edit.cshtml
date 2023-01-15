@@ -1,0 +1,129 @@
+﻿@model AppUserDto
+@{
+    ViewBag.Title = "Edit profile";
+
+    var photoUrl = Model.PhotoUrl;
+
+    if (Model.Photos.Count == 0)
+        photoUrl = "~/img/user.png";
+}
+
+@section Head {
+    <link href="~/css/tab.min.css" rel="stylesheet" />
+    <link href="~/css/gallery.css" rel="stylesheet" />
+    <link href="~/css/edit.min.css" rel="stylesheet" />
+}
+
+    @section Scripts {
+    <script src="~/js/tab.min.js"></script>
+}
+
+    <div class="row mt-0">
+        <div class="col-12 text-center mt-1 mb-0">
+            <h1>Your profile</h1>
+        </div>
+        @*<div class="col-8">
+    <div id="BeforeYouLeaveDiv" class="alert alert-info">
+    <p><strong>Information: </strong>You have made changes. Any unsaved changes will be lost</p>
+    </div>
+    </div>*@
+
+        <div class="col-4">
+            <div class="card mt-1">
+                <div class="card-img-wrapper p-3">
+                @if (Model.Photos.Count != 0)
+                {
+                    <img src=@Model.PhotoUrl
+                     class="card-img-top img-thumbnail" alt="@Model.Name" />
+                }
+                else
+                {
+                    <img src="~/img/user.jpg"
+                     class="card-img-top img-thumbnail" alt="@Model.Name" />
+                }
+            </div>
+            <div class="card-body">
+                <div>
+                    <strong>Name:</strong>
+                    <p>@Model.Name</p>
+                </div>
+                <div>
+                    <strong>Age:</strong>
+                    <p>@Model.Age</p>
+                </div>
+                <div>
+                    <strong>Location:</strong>
+                    <p>@Model.City, @Model.Region</p>
+                </div>
+                <div>
+                    <strong>Last active:</strong>
+                    <p>@Model.LastActive</p>
+                </div>
+                <div>
+                    <strong>Member since:</strong>
+                    <p class="mb-0">@Model.Created</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button form="editForm"
+                        type="submit"
+                        class="btn btn-outline-success col-12">
+                    <i class="fas fa-save"></i>
+                    Save changes
+                </button>
+                @*<input type="submit" form="editForm"
+                value="@Model"
+                onclick="location.href='<%: Url.Action(" Action", "Controller" ) %>'" />*@
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="tab mt-1">
+            <button class="tablinks" onclick="openProperty(event, 'Name')">About @Model.Name</button>
+            <button class="tablinks" onclick="openProperty(event, 'Edit photos')">Edit photos</button>
+        </div>
+        <div id="Name" class="tabcontent">
+            <form method="post" id="editForm">
+                <input type="hidden" asp-for="Id" name="Id" />
+                <input type="hidden" asp-for="Username" name="Username" />
+                <input type="hidden" asp-for="Name" name="Name" />
+                <input type="hidden" asp-for="PhotoUrl" name="PhotoUrl" />
+                <input type="hidden" asp-for="Age" name="Age" />
+                <input type="hidden" asp-for="Created" name="Created" />
+                <input type="hidden" asp-for="LastActive" name="LastActive" />
+                <input type="hidden" asp-for="DateOfBirth" name="DateOfBirth" />
+                <input type="hidden" asp-for="Photos" name="Photos" />
+                <div>
+                    <h4 class="mt-2">Bio</h4>
+                    <textarea class="form-control"
+                              asp-for="Bio"
+                              name="bio"
+                              rows="6"></textarea>
+                    <h4 class="mt-2">Looking for</h4>
+                    <textarea class="form-control"
+                              asp-for="LookingFor"
+                              name="lookingFor"
+                              rows="6"></textarea>
+                    <h4 class="mt-2">Interests</h4>
+                    <textarea class="form-control"
+                              asp-for="Interests"
+                              name="interests"
+                              rows="3"></textarea>
+                    <h4 class="mt-2">Location Details: </h4>
+                    <div class="d-flex flex-row align-items-center">
+                        <label asp-for="City">City: </label>
+                        <input asp-for="City" type="text" name="city" class="form-control mx-2" />
+                        <label asp-for="Region">Region: </label>
+                        <input asp-for="Region" type="text" name="region" class="form-control mx-2" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="Edit photos" class="tabcontent">
+            @if (Model.Photos is not null)
+            {
+                <vc:photo-editor user-dto=@Model></vc:photo-editor>
+            }
+        </div>
+    </div>
+</div>   
