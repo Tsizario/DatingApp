@@ -1,0 +1,17 @@
+﻿.gallery-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.gallery-image-container {
+    background: #fff;
+    display: inline-block;
+    height: !important 100%;
+    width: !important 100%;
+    position: relative;
+}
+
+.drop-shadow {
+    box-shadow: 0 10px 18px rgba(0,0,0,0.2), 0 5px 5px rgba(0,0,0,0.2);
+}

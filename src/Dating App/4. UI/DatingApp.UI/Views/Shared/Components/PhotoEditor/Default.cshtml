@@ -1,0 +1,25 @@
+﻿@model AppUserDto
+
+<div class="row">
+    @foreach (var photo in Model.Photos)
+    {
+        <div class="col-4">
+            <div class="card p-1">
+                <div class="card-img-wrapper">
+                    <div class="gallery-image-container p-2">
+                        <a href=@photo.Url target="_blank" data-title="User's photo">
+                            <img src=@photo.Url alt="The photo of @Model.Name"
+                             class="img-thumbnail photo" />
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body p-1 mb-1 mx-auto">
+                    <button class="btn btn-outline-success">Main</button>
+                    <div class="btn btn-outline-danger">
+                        <i class="fa fa-trash d-inline"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

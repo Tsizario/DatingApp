@@ -1,0 +1,65 @@
+﻿@model IEnumerable<AppUserDto>
+@{
+    ViewBag.Title = "Users";
+}
+
+<div class="row mt-4">
+    @foreach (var member in Model)
+    {
+        <div class="col-lg-2 mb-3">
+            <div class="card">
+                <div class="card-img-wrapper text-center">
+                    @if (member.Photos.Count != 0)
+                    {
+                        <img src=@member.PhotoUrl
+                            class="card-img-top photo d-block" alt="@member.Name" />
+                    }
+                    else
+                    {
+                        <img src="~/img/user.jpg"
+                            class="card-img-top photo d-block" alt="@member.Name" />
+                    }
+                    <ul class="list-inline member-icons animate">
+                        <li class="list-inline-item">
+                            <a class="nav-link"
+                                asp-controller="AppUsers"
+                                asp-action="GetUser">
+                                <div class="btn btn-light">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="nav-link"
+                                asp-controller="AppUsers"
+                                asp-action="GetUser"
+                                asp-route-username=@member.Username>
+                                <div class="btn btn-light">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="nav-link"
+                               asp-controller="Members"
+                               asp-action="Member">
+                                <div class="btn btn-light">
+                                    <i class="fa-solid fa-comment"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ps-2">
+                    <div class="card-body p-1">
+                        <div class="card-title text-black mb-1">
+                            <i class="fa-solid fa-user d-inline"></i>
+                            @member.Name, @member.Age
+                        </div>
+                        <p class="card-text text-muted mt-1">@member.City, @member.Region</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -22,9 +22,9 @@ namespace DatingApp.Domain.Entities
 
         public string Interests { get; set; }
 
-        public string Country { get; set; }
-
         public string City { get; set; }
+
+        public string Region { get; set; }
 
         public DateTime Created { get; set; }
 
