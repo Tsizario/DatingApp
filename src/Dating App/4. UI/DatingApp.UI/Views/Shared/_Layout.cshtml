@@ -3,8 +3,8 @@
 <head>
     <title>Bingo! - @ViewBag.Title</title>
     <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />    
     <link href="~/lib/fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     @await RenderSectionAsync("Head", false)
 </head>
 <body>
@@ -12,7 +12,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
                 <a class="navbar-brand fs-3" asp-controller="App" asp-action="Home">
-                    <i class="fa-regular fa-heart me-0"></i>
+                    <i class="fa fa-regular fa-heart me-0"></i>
                     Bingo!
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#theMenu" aria-expanded="false" aria-controls="theMenu">

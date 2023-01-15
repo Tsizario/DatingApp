@@ -63,10 +63,9 @@ namespace DatingApp.UI
 
             app.UseNotyf();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();     // нет определенных маршрутов
-            });
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
         }
     }
 }
